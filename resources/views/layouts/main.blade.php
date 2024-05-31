@@ -89,7 +89,7 @@
                     </div>
                 </div>
                 <div class="nav-item dropdown">
-                    <div data-bs-toggle="modal" data-bs-target="#exampleModal" class="nav-link dropdown-toggle active">Kendaraan</div>
+                    <div data-bs-toggle="modal" style="cursor: pointer;" data-bs-target="#exampleModal" class="nav-link active">Kendaraan</div>
                 </div>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">After sales</a>
