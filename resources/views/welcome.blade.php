@@ -41,13 +41,15 @@
     <div id="carousel-kendaraan" class="owl-carousel owl-theme container">
         @foreach ($kendaraan as $item)
         <div>
+            <a href="/produk/kendaraan/{{$item->slug}}">
             <img class="" style="object-fit: contain; width: 100%; height: 280px;" src="{{$item->gambar}}" alt="">
             <div class="text-center">
                 <h3 class="text-dark">{{$item->nama}}</h3>
                 <p style="color: rgb(133, 133, 133)">Mulai dari {{$item->harga}}</p>
             </div>
+        </a>
             <div class="d-flex justify-content-center mt-4 mb-5">
-                <a class="btn btn-outline-dark">
+                <a href="/produk/kendaraan/{{$item->slug}}" class="btn btn-outline-dark">
                     <h6 class="my-0 py-2">Selengkapnya</h6></a> 
             </div>
             
