@@ -23,6 +23,8 @@
                     <input type="file" required class="form-control" name="gambar">
                     <label for="">Gambar background</label>
                     <input type="file" required class="form-control" name="background">
+                    <label for="">Gambar background thumbnail</label>
+                    <input type="file" required class="form-control" name="background_thumbnail">
                     <label for="">Sub text 1</label>
                     <input type="text" required class="form-control" name="subtext1">
                     <label for="">Sub text 2</label>

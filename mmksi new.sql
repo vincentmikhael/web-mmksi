@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 30, 2024 at 04:49 PM
+-- Generation Time: Jun 03, 2024 at 02:58 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -279,6 +279,7 @@ CREATE TABLE `kendaraan` (
   `foto_interior` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `gambar` varchar(255) NOT NULL,
   `background` varchar(255) NOT NULL,
+  `background_thumbnail` varchar(255) NOT NULL,
   `harga` varchar(255) NOT NULL,
   `kategori` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
@@ -287,12 +288,12 @@ CREATE TABLE `kendaraan` (
 -- Dumping data for table `kendaraan`
 --
 
-INSERT INTO `kendaraan` (`id`, `nama`, `slug`, `subtext1`, `subtext2`, `foto_exterior`, `isi_foto_exterior`, `foto_interior`, `gambar`, `background`, `harga`, `kategori`) VALUES
-(2, 'Excepteur id except', 'Excepteur-id-except', 'Quaerat nisi ab blan', 'Molestiae aut offici', NULL, 0, NULL, 'images/gambar_kendaraan/11716958155pajero.png', 'images/gambar_kendaraan/21716745294bg1.png', 'Rp 450.000.000', 'Light Commercial Vehicle'),
-(3, 'Quia fugit et quaer', 'quia-fugit-et-quaer', 'Velit ex dolor sit', 'Porro quo veniam eu', 'images/gambar_kendaraan/41717048828watch.jpg', 31, 'images/gambar_kendaraan/31717047346interior_car.jpg', 'images/gambar_kendaraan/11716958190fuso.png', 'images/gambar_kendaraan/21716958190Mitsubishi-L100.jpg', 'Rp 450.000.000', 'Passenger Car'),
-(4, 'Quisquam ad est duis', 'Quisquam-ad-est-duis', 'Est placeat nisi de', 'Alias illo possimus', 'images/gambar_kendaraan/41716958277Mitsubishi-L100.jpg', 0, 'images/gambar_kendaraan/31716958277carousel-bg-1.jpg', 'images/gambar_kendaraan/11716958277mobilmerah.jpg', 'images/gambar_kendaraan/21716958277Mitsubishi-L100.jpg', 'Rp 450.000.000', 'Passenger Car'),
-(5, 'Eiusmod accusantium', 'Eiusmod-accusantium', 'Quis labore atque et', 'Iure officia ut mole', 'images/gambar_kendaraan/41716958298promo1.png', 0, 'images/gambar_kendaraan/31716958298carousel-bg-1.jpg', 'images/gambar_kendaraan/11716958298mobilputih.jpg', 'images/gambar_kendaraan/21716958298promo1.png', 'Rp 450.000.000', 'Light Commercial Vehicle'),
-(6, 'Fugiat minim sunt', 'fugiat-minim-sunt', 'Voluptatem aut aliqu', 'Odio nulla nisi nisi', 'images/gambar_kendaraan/41717002262mobilmerah.jpg', 0, 'images/gambar_kendaraan/317170022621715156796-picture1png.webp', 'images/gambar_kendaraan/11717002262mobilputih.jpg', 'images/gambar_kendaraan/21717002262mobilputih.jpg', 'Dolor ad quibusdam l', 'Passenger Car');
+INSERT INTO `kendaraan` (`id`, `nama`, `slug`, `subtext1`, `subtext2`, `foto_exterior`, `isi_foto_exterior`, `foto_interior`, `gambar`, `background`, `background_thumbnail`, `harga`, `kategori`) VALUES
+(2, 'Excepteur id except', 'excepteur-id-except', 'Quaerat nisi ab blan', 'Molestiae aut offici', NULL, 0, NULL, 'images/gambar_kendaraan/11717424073new-xpander.webp', 'images/gambar_kendaraan/21716745294bg1.png', 'images/gambar_kendaraan/21717424073kota-makassar.webp', 'Rp 450.000.000', 'Light Commercial Vehicle'),
+(3, 'Quia fugit et quaer', 'quia-fugit-et-quaer', 'Velit ex dolor sit', 'Porro quo veniam eu', 'images/gambar_kendaraan/41717048828watch.jpg', 31, 'images/gambar_kendaraan/31717047346interior_car.jpg', 'images/gambar_kendaraan/11717424562triton.webp', 'images/gambar_kendaraan/21716958190Mitsubishi-L100.jpg', 'images/gambar_kendaraan/21717424562kota-jeneponto.webp', 'Rp 450.000.000', 'Passenger Car'),
+(4, 'Quisquam ad est duis', 'quisquam-ad-est-duis', 'Est placeat nisi de', 'Alias illo possimus', 'images/gambar_kendaraan/41716958277Mitsubishi-L100.jpg', 0, 'images/gambar_kendaraan/31716958277carousel-bg-1.jpg', 'images/gambar_kendaraan/11717424577new-pajero-sport (1).webp', 'images/gambar_kendaraan/21716958277Mitsubishi-L100.jpg', 'images/gambar_kendaraan/21717424577kota-makassar.webp', 'Rp 450.000.000', 'Passenger Car'),
+(5, 'Eiusmod accusantium', 'eiusmod-accusantium', 'Quis labore atque et', 'Iure officia ut mole', 'images/gambar_kendaraan/41716958298promo1.png', 0, 'images/gambar_kendaraan/31716958298carousel-bg-1.jpg', 'images/gambar_kendaraan/11716958298mobilputih.jpg', 'images/gambar_kendaraan/21716958298promo1.png', 'images/gambar_kendaraan/21717424642kota-makassar.webp', 'Rp 450.000.000', 'Light Commercial Vehicle'),
+(6, 'Fugiat minim sunt', 'fugiat-minim-sunt', 'Voluptatem aut aliqu', 'Odio nulla nisi nisi', 'images/gambar_kendaraan/41717002262mobilmerah.jpg', 0, 'images/gambar_kendaraan/317170022621715156796-picture1png.webp', 'images/gambar_kendaraan/11717002262mobilputih.jpg', 'images/gambar_kendaraan/21717002262mobilputih.jpg', 'images/gambar_kendaraan/21717424654kota-jeneponto.webp', 'Dolor ad quibusdam l', 'Passenger Car');
 
 -- --------------------------------------------------------
 

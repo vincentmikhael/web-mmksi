@@ -1,6 +1,10 @@
 @extends('layouts.main')
-
+@section('css')
+    <link rel="stylesheet" href="{{asset('css/produk-slider.css')}}">
+@endsection
 @section('content')
+
+
     <!-- Carousel Start -->
     <div class="container-fluid p-0 mb-5">
         <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
@@ -37,26 +41,41 @@
         </div>
     </div>
     <!-- Carousel End -->
+
+    <section class="home-product swiper-container swiper-initialized swiper-horizontal swiper-pointer-events">
+        <div class="swiper-wrapper" id="swiper-wrapper-10b910589b247811e3" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-3792.5px, 0px, 0px);">
     
-    <div id="carousel-kendaraan" class="owl-carousel owl-theme container">
-        @foreach ($kendaraan as $item)
-        <div>
-            <a href="/produk/kendaraan/{{$item->slug}}">
-            <img class="" style="object-fit: contain; width: 100%; height: 280px;" src="{{$item->gambar}}" alt="">
-            <div class="text-center">
-                <h3 class="text-dark">{{$item->nama}}</h3>
-                <p style="color: rgb(133, 133, 133)">Mulai dari {{$item->harga}}</p>
-            </div>
-        </a>
-            <div class="d-flex justify-content-center mt-4 mb-5">
-                <a href="/produk/kendaraan/{{$item->slug}}" class="btn btn-outline-dark">
-                    <h6 class="my-0 py-2">Selengkapnya</h6></a> 
-            </div>
-            
+            @foreach ($kendaraan as $item)
+           <div class="swiper-slide" role="group" aria-label="1 / 7" style="margin-right: 60px;" data-swiper-slide-index="0">
+              <div class="swiper-item">
+                 <div class="swiper-item-wrapper">
+                    <div class="swiper-item-head">
+                       <a href="/produk/kendaraan/{{$item->slug}}" title="L100 EV" class="swiper-item-trap"></a>
+                       <div class="swiper-item-image">
+                          <img style="object-fit: contain; width: 100%; height: 280px;" src="{{$item->gambar}}" alt="L100 EV">
+                       </div>
+                       <div class="swiper-item-background">
+                          <img src="{{$item->background_thumbnail}}" alt="L100 EV">
+                       </div>
+                    </div>
+                    <div class="swiper-item-body">
+                       <h3>{{$item->nama}}</h3>
+                       <p>Mulai dari {{$item->harga}}</p>
+                       <a class="btn btn-outline-dark" href="/produk/kendaraan/{{$item->slug}}" title="L100 EV" class="button button-secondary-other button-more">Selengkapnya</a>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           @endforeach  
+           
+          
         </div>
-        @endforeach  
-    </div>
+        <div class="swiper-button-prev swiper-button-product-prev mt-5" tabindex="0" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-10b910589b247811e3"></div>
+        <div class="swiper-button-next swiper-button-product-next mt-5" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-10b910589b247811e3"></div>
+        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+     </section>
     
+
    
 <div class="bg-dark py-5">
     <div id="carousel-youtube" class="owl-carousel my-5 owl-theme container">
@@ -223,6 +242,25 @@
 
  @section('js')
  <script>
+    var swiper = new Swiper(".home-product, .archive-product, .pricelist-product", {
+        lazy: !0,
+        slidesPerView: "auto",
+        centeredSlides: !0,
+        speed: 1e3,
+        spaceBetween: 16,
+        slideToClickedSlide: !0,
+        loop: !0,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
+        },
+        breakpoints: {
+            480: {
+                spaceBetween: 60
+            }
+        }
+    })
+    
     $('#carousel-youtube').owlCarousel({
 loop:true,
 margin:50,
