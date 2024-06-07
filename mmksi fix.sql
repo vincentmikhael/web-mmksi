@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 03, 2024 at 02:58 PM
+-- Generation Time: Jun 07, 2024 at 07:11 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -641,7 +641,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'vincent', 'vincent@gmail.com', NULL, '$2y$12$kOVYmfYW1WPYhjp1kNraveYjHKws.EghRs2lIHR3K6eUFU7RT0tti', 'fL1vTqMPIBZy48MtPpg7MiPxje4kHDCZYdl31InzRIo6FOuNdYx9lFkgyGTP', '2024-05-24 02:55:04', '2024-05-24 02:55:04');
+(1, 'vincent', 'vincent@gmail.com', NULL, '$2y$12$kOVYmfYW1WPYhjp1kNraveYjHKws.EghRs2lIHR3K6eUFU7RT0tti', 'fL1vTqMPIBZy48MtPpg7MiPxje4kHDCZYdl31InzRIo6FOuNdYx9lFkgyGTP', '2024-05-24 02:55:04', '2024-05-24 02:55:04'),
+(2, 'admin', 'admin@mmksi.com', NULL, '$2y$12$G2iOCHPUZ66nl7bMNzAOD.AKiKjpW08Rde3/f1t42KPXJTvIxnAtK', NULL, '2024-06-07 11:52:26', '2024-06-07 11:52:26');
 
 -- --------------------------------------------------------
 
@@ -1010,7 +1011,7 @@ ALTER TABLE `testdrive`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `youtube`
