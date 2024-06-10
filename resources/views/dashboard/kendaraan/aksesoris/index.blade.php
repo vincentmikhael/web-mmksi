@@ -20,6 +20,8 @@
                           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Judul</th>
                           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Harga</th>
                           <th class="text-secondary opacity-7"></th>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created by</th>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Updated by</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -43,6 +45,8 @@
                             <a href="/kendaraan/{{$id_kendaraan}}/aksesoris/edit/{{$item->id}}" class=" btn btn-success font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit kendaraan"> Edit </a>
                             <a href="/kendaraan/{{$id_kendaraan}}/aksesoris/delete/{{$item->id}}" class="btn btn-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete kendaraan"> Hapus </a>
                           </td>
+                          <td><h6 class="mb-0 text-sm">{{$item->created_by}}</h6></td>
+                          <td><h6 class="mb-0 text-sm">{{$item->updated_by}}</h6></td>
                         </tr>
                         @endforeach
                         

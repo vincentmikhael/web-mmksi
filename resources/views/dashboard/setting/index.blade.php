@@ -4,8 +4,9 @@
       <div class="row">
         <div class="col-12">
           <div class="card mb-4">
-            <div class="card-header pb-0">
+            <div class="card-header d-flex justify-content-between pb-0">
               <h6>Pengaturan Website</h6>
+              <small>Last updated by {{$setting->updated_by}}</small>
             </div>
             <div class="card-body px-4 pt-0 pb-2">
              <form method="POST" action="" enctype="multipart/form-data">

@@ -5,7 +5,10 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-header">CMS sparepart</div>
+            <div class="card-header d-flex justify-content-between">
+                <div>Manajemen data</div>
+                <div>Last updated by {{$sparepart->updated_by}}</div>
+            </div>
             <div class="card-body">
                 <form action="" method="POST" enctype="multipart/form-data">
                     @csrf

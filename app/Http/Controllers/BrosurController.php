@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brosur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class BrosurController extends Controller
@@ -19,7 +20,7 @@ class BrosurController extends Controller
 
    public function add_brosur(Request $request){
         $data = $request->except('_token');
-
+        $data['created_by'] = Auth::user()->username;
         $sampul = $request->sampul->getClientOriginalName();
         $request->sampul->move(public_path('images/sampul_brosur/'), $sampul);
         $data['sampul'] = "images/sampul_brosur/" . $sampul;
@@ -40,6 +41,7 @@ class BrosurController extends Controller
 
    public function update(Request $request, $id){
         $data = $request->except(['_token','_method','sampul','link']);
+        $data['updated_by'] = Auth::user()->username;
         $brosur = Brosur::where('id',$id)->first();
         if($request->sampul){
             File::delete(public_path($brosur->sampul));

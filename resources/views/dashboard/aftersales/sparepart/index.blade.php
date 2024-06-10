@@ -20,6 +20,8 @@
                           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
                           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Harga</th>
                           <th class="text-secondary opacity-7"></th>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created by</th>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Updated by</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -42,6 +44,8 @@
                             <a href="/sparepart/edit/{{$item->id}}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit sparepart_kategori"> Edit </a>
                             <a href="/sparepart/delete/{{$item->id}}" class="text-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete sparepart_kategori"> Hapus </a>
                           </td>
+                          <td><h6 class="mb-0 text-sm">{{$item->created_by}}</h6></td>
+                          <td><h6 class="mb-0 text-sm">{{$item->updated_by}}</h6></td>
                         </tr>
                         @endforeach
                         

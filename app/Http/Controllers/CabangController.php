@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cabang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CabangController extends Controller
 {
@@ -23,6 +24,7 @@ class CabangController extends Controller
 
     public function add_action(Request $request){
         $data = $request->except(['_token']);
+        $data['created_by'] = Auth::user()->username;
         $data['layanan'] = implode(', ',$request->layanan);
         Cabang::insert($data);
 
@@ -31,6 +33,7 @@ class CabangController extends Controller
 
     public function update(Request $request,$id){
         $data = $request->except(['_token']);
+        $data['updated_by'] = Auth::user()->username;
         $data['layanan'] = implode(', ',$request->layanan);
         Cabang::where('id',$id)->update($data);
         return redirect()->to('/cabang')->with('success','Data berhasil diubah');

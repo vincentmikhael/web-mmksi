@@ -33,7 +33,16 @@
   <link href="{{asset('dashboard_asset/css/nucleo-svg.css')}}" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="{{asset('dashboard_asset/css/argon-dashboard.css?v=2.0.4')}}" rel="stylesheet" />
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <style>
+      .field-icon {
+    float: right;
+    margin-right: 10px;
+    margin-top: -25px;
+    position: relative;
+    z-index: 2;
+  }
+  </style>
 </head>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -63,6 +72,14 @@
               <i class="ni ni-album-2 text-primary text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Permintaan test drive</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="/users">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-album-2 text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Manajemen Users</span>
           </a>
         </li>
         <li class="nav-item">
@@ -196,12 +213,23 @@
    
           </div>
           <ul class="navbar-nav  justify-content-end">
-            <li class="nav-item d-flex align-items-center">
-              <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
-                <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">Logout</span>
+            <li class="nav-item dropdown">
+              <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                  {{ Auth::user()->username }}
               </a>
-            </li>
+
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{{ route('logout') }}"
+                     onclick="event.preventDefault();
+                                   document.getElementById('logout-form').submit();">
+                      {{ __('Logout') }}
+                  </a>
+
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                      @csrf
+                  </form>
+              </div>
+          </li>
 
           </ul>
         </div>
@@ -272,4 +300,21 @@ function inputRp(input,prefix){
     input.value = formatRp(input.value,prefix)
 }
   </script>
+
+<script>
+  document.querySelectorAll('.toggle-password').forEach(function(element) {
+element.addEventListener('click', function() {
+  this.classList.toggle('fa-eye');
+  this.classList.toggle('fa-eye-slash');
+  
+  var input = document.querySelector(this.getAttribute('toggle'));
+  if (input.getAttribute('type') === 'password') {
+    input.setAttribute('type', 'text');
+  } else {
+    input.setAttribute('type', 'password');
+  }
+});
+});
+
+</script>
   @yield('js')

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SejarahController extends Controller
@@ -35,10 +36,9 @@ class SejarahController extends Controller
         if(count($data) > 0){
             DB::table('sejarah_perusahaan_timeline')->insert($request->item);
         }
-        
-        DB::table('sejarah_perusahaan')->where('id',1)->update(
-            $request->except(['item','_token'])
-        );
+        $updated = $request->except(['item','_token']);
+        $updated['updated_by'] = Auth::user()->username;
+        DB::table('sejarah_perusahaan')->where('id',1)->update($updated);
         return redirect()->back()->with('success','Data berhasil diupdate');
         
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Aftersales;
 use App\Http\Controllers\Controller;
 use App\Models\Aftersales\SparepartKategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class SparepartKategoriController extends Controller
@@ -20,7 +21,7 @@ class SparepartKategoriController extends Controller
 
    public function add_action(Request $request){
         $data = $request->except('_token');
-
+        $data['created_by'] = Auth::user()->username;
         $gambar = time() . $request->gambar->getClientOriginalName();
         $request->gambar->move(public_path('images/sparepart_kategori/'), $gambar);
         $data['gambar'] = "images/sparepart_kategori/" . $gambar;
@@ -36,6 +37,7 @@ class SparepartKategoriController extends Controller
 
    public function update(Request $request, $id){
         $data = $request->except(['_token','_method','gambar']);
+        $data['updated_by'] = Auth::user()->username;
         $kategori = SparepartKategori::where('id',$id)->first();
         if($request->gambar){
             File::delete(public_path($kategori->gambar));

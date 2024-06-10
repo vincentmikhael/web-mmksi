@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Kendaraan;
 use App\Http\Controllers\Controller;
 use App\Models\Kendaraan\Performance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class PerformaceController extends Controller
@@ -25,7 +26,7 @@ class PerformaceController extends Controller
 
     public function add_action(Request $request,$id_kendaraan){
         $data = $request->except(['_token']);
-
+        $data['created_by'] = Auth::user()->username;
         $gambar = time() . $request->gambar->getClientOriginalName();
         $request->gambar->move(public_path('images/performance_kendaraan/'), $gambar);
         $data['gambar'] = "images/performance_kendaraan/" . $gambar;
@@ -36,6 +37,7 @@ class PerformaceController extends Controller
 
     public function update(Request $request,$id_kendaraan,$id_performance){
         $data = $request->except(['_token','_method','gambar']);
+        $data['updated_by'] = Auth::user()->username;
         $performance = Performance::find($id_performance);
         if($request->gambar){
             File::delete(public_path($performance->gambar));

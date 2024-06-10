@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Kendaraan;
 use App\Http\Controllers\Controller;
 use App\Models\Kendaraan\Aksesoris;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class KendaraanAksesorisController extends Controller
@@ -25,7 +26,7 @@ class KendaraanAksesorisController extends Controller
 
     public function add_action(Request $request){
         $data = $request->except(['_token']);
-
+        $data['created_by'] = Auth::user()->username;
         $gambar = time() . $request->gambar->getClientOriginalName();
         $request->gambar->move(public_path('images/aksesoris_kendaraan/'), $gambar);
         $data['gambar'] = "images/aksesoris_kendaraan/" . $gambar;
@@ -36,6 +37,7 @@ class KendaraanAksesorisController extends Controller
 
     public function update(Request $request,$id_kendaraan,$id_aksesoris){
         $data = $request->except(['_token','_method','gambar']);
+        $data['updated_by'] = Auth::user()->username;
         $aksesoris = Aksesoris::find($id_aksesoris);
         if($request->gambar){
             File::delete(public_path($aksesoris->gambar));

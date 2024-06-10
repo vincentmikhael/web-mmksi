@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Berita;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class BeritaController extends Controller
@@ -25,6 +26,7 @@ class BeritaController extends Controller
 
     public function update(Request $request,$id){
         $data = $request->except(['_token','_method','sampul']);
+        $data['updated_by'] = Auth::user()->username;
         $berita = Berita::where('id',$id)->first();
         if($request->sampul){
             File::delete(public_path($berita->gambar));
@@ -40,7 +42,7 @@ class BeritaController extends Controller
 
     public function add_action(Request $request){
         $data = $request->except(['_token','_method','sampul']);
-
+        $data['created_by'] = Auth::user()->username;
         $sampul = $request->sampul->getClientOriginalName();
         $request->sampul->move(public_path('images/cover_berita/'), $sampul);
         $data['gambar'] = "images/cover_berita/" . $sampul;

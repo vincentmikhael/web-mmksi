@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class SettingController extends Controller
@@ -14,7 +15,7 @@ class SettingController extends Controller
     }
     public function add_action(Request $request){
         $data = $request->except(['_token','icon_website']);
-
+        $data['updated_by'] = Auth::user()->username;
         $setting = Setting::first();
         if($request->icon){
             File::delete(public_path($setting->icon));

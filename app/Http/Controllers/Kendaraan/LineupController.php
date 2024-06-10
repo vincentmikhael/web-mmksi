@@ -7,6 +7,7 @@ use App\Models\Banner;
 use App\Models\Kendaraan\Lineup;
 use App\Models\Kendaraan\LineupWarna;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class LineupController extends Controller
@@ -30,7 +31,8 @@ class LineupController extends Controller
         $id = Lineup::insertGetId([
             'nama' => $request->nama,
             'harga' => $request->harga,
-            'id_kendaraan' => $request->id_kendaraan
+            'id_kendaraan' => $request->id_kendaraan,
+            'created_by' => Auth::user()->username
         ]);
         $data = [];
         foreach($request->item as $item){
@@ -53,6 +55,7 @@ class LineupController extends Controller
         Lineup::where('id',$id_lineup)->update([
             'nama' => $request->nama,
             'harga' => $request->harga,
+            'updated_by' => Auth::user()->username
         ]);
 
         $data = [];

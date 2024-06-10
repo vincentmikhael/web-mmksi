@@ -21,6 +21,8 @@
                           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kota</th>
                           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alamat</th>
                           <th class="text-secondary opacity-7"></th>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created by</th>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Updated by</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -55,6 +57,8 @@
                             <a href="/cabang/edit/{{$item->id}}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit cabang"> Edit </a>
                             <a href="/cabang/delete/{{$item->id}}" class="text-danger font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete cabang"> Hapus </a>
                           </td>
+                          <td><h6 class="mb-0 text-sm">{{$item->created_by}}</h6></td>
+                          <td><h6 class="mb-0 text-sm">{{$item->updated_by}}</h6></td>
                         </tr>
                         @endforeach
                         

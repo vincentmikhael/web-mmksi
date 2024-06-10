@@ -7,6 +7,7 @@ use App\Models\Aftersales\Sparepart;
 use App\Models\Aftersales\SparepartKategori;
 use App\Models\Aftersales\SparepartLink;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class SparepartController extends Controller
@@ -23,7 +24,7 @@ class SparepartController extends Controller
 
    public function add_action(Request $request){
         $data = $request->except('_token','item');
-
+        $data['created_by'] = Auth::user()->username;
         $gambar = time() . $request->gambar->getClientOriginalName();
         $request->gambar->move(public_path('images/sparepart/'), $gambar);
         $data['gambar'] = "images/sparepart/" . $gambar;
@@ -54,6 +55,7 @@ class SparepartController extends Controller
 
    public function update(Request $request, $id){
         $data = $request->except(['_token','_method','gambar','item']);
+        $data['updated_by'] = Auth::user()->username;
         $sparepart = Sparepart::where('id',$id)->first();
 
         if($request->gambar){

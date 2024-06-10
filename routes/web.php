@@ -6,6 +6,7 @@ use App\Http\Controllers\Aftersales\CmsSparepartController;
 use App\Http\Controllers\Aftersales\MaintenanceController;
 use App\Http\Controllers\Aftersales\SparepartController;
 use App\Http\Controllers\Aftersales\SparepartKategoriController;
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\BrosurController;
 use App\Http\Controllers\CarouselController;
@@ -142,6 +143,14 @@ Route::get('/sparepart/delete/{id}',[SparepartController::class,'delete']);
 
 Route::get('/setting',[SettingController::class,'index']);
 Route::post('/setting',[SettingController::class,'add_action']);
+
+Route::get('/users',[AuthController::class,'index']);
+Route::get('/users/add',[AuthController::class,'add']);
+Route::post('/users/add',[AuthController::class,'add_action']);
+Route::get('/users/edit/{id}',[AuthController::class,'edit']);
+Route::post('/users/edit/{id}',[AuthController::class,'update']);
+Route::get('/users/delete/{id}',[AuthController::class,'delete']);
+
 });
 Route::get('/', [MainController::class,'index']);
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Kendaraan;
 use App\Http\Controllers\Controller;
 use App\Models\Kendaraan\Safety;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class SafetyController extends Controller
@@ -25,7 +26,7 @@ class SafetyController extends Controller
 
     public function add_action(Request $request,$id_kendaraan){
         $data = $request->except(['_token']);
-
+        $data['created_by'] = Auth::user()->username;
         $gambar = time() . $request->gambar->getClientOriginalName();
         $request->gambar->move(public_path('images/safety_kendaraan/'), $gambar);
         $data['gambar'] = "images/safety_kendaraan/" . $gambar;
@@ -36,6 +37,7 @@ class SafetyController extends Controller
 
     public function update(Request $request,$id_kendaraan,$id_safety){
         $data = $request->except(['_token','_method','gambar']);
+        $data['updated_by'] = Auth::user()->username;
         $safety = Safety::find($id_safety);
         if($request->gambar){
             File::delete(public_path($safety->gambar));

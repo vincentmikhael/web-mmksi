@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Aftersales;
 use App\Http\Controllers\Controller;
 use App\Models\Aftersales\Maintenance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 
@@ -17,7 +18,7 @@ class MaintenanceController extends Controller
 
     public function add_action(Request $request){
         $data = $request->except(['_token','gambar']);
-
+        $data['updated_by'] = Auth::user()->username;
         if($request->gambar){
             $maintenance = Maintenance::first();
             File::delete(public_path($maintenance->background));

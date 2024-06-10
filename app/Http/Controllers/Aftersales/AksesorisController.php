@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Aftersales\Aksesoris;
 use App\Models\Kendaraan\Kendaraan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class AksesorisController extends Controller
@@ -17,7 +18,7 @@ class AksesorisController extends Controller
 
     public function add_action(Request $request){
         $data = $request->except(['_token','gambar']);
-
+        $data['updated_by'] = Auth::user()->username;
         if($request->gambar){
             $aksesoris = Aksesoris::first();
             File::delete(public_path($aksesoris->background));

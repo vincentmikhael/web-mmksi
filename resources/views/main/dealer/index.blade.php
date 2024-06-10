@@ -4,7 +4,7 @@
 {{-- https://alamat.thecloudalert.com/api/kabkota/get/ --}}
 <div class="container mt-5">
     <form class="row align-items-center">
-        <div class="col-2">
+        <div class="col-md-2">
             <label for="">Layanan dealer</label> <br>
             <input type="checkbox" value="Bodi & Cat" name="layanan[]">
                     <label for="">Bodi & Cat</label> <br>
@@ -15,7 +15,7 @@
                     <input type="checkbox" value="Suku Cadang" name="layanan[]">
                     <label for="">Suku Cadang</label>
         </div>
-        <div class="col-2">
+        <div class="col-md-2 mt-md-0 mt-4">
             <label for="">Kota/Kabupaten</label>
             <select name="kota" class="form-select" id="">
                 <option selected disabled>--Pilih kota</option>
@@ -33,7 +33,7 @@
 
     <div class="row">
         @forelse ($dealer as $item)
-            <div class="col-4">
+            <div class="col-md-4 col-12">
                 <div class="card">
                     <div class="container mt-4 mb-3">
                         <h3>{{$item->nama}}</h3>

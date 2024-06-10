@@ -11,6 +11,7 @@ use App\Models\Kendaraan\Lineup;
 use App\Models\Kendaraan\Performance;
 use App\Models\Kendaraan\Safety;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
@@ -32,7 +33,7 @@ class KendaraanController extends Controller
 
     public function add_action(Request $request){
         $data = $request->except('_token');
-
+        $data['created_by'] = Auth::user()->username;
         $gambar = '1' . time() . $request->gambar->getClientOriginalName();
         $request->gambar->move(public_path('images/gambar_kendaraan/'), $gambar);
         $data['gambar'] = "images/gambar_kendaraan/" . $gambar;
@@ -64,6 +65,7 @@ class KendaraanController extends Controller
 
     public function update(Request $request,$id){
         $data = $request->except(['_token','_method','foto_interior','foto_exterior','gambar','background']);
+        $data['updated_by'] = Auth::user()->username;
         $kendaraan = Kendaraan::where('id',$id)->first();
         if($request->foto_interior){
             File::delete(public_path($kendaraan->foto_interior));
