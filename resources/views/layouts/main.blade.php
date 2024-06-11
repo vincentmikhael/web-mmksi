@@ -258,7 +258,7 @@
 
 
     <!-- Back to Top -->
-    <a href="https://wa.me/{{getSetting()->whatsapp}}" class="btn btn-lg btn-primary mb-4 btn-lg-square back-to-top"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://wa.me/{{getSetting()->whatsapp}}" target="blank" style="z-index: 9999;" class="btn btn-primary mb-4 btn-lg-square back-to-top"><i style="font-size: 35px;" class="fab fa-whatsapp"></i></a>
 
 
     <!-- JavaScript Libraries -->

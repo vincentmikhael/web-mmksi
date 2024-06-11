@@ -32,6 +32,11 @@ class LoginController extends Controller
         return 'username';
     }
 
+    protected function loggedOut(Request $request)
+    {
+        return redirect('/login'); // Ganti '/' dengan URL yang Anda inginkan
+    }
+
     protected function validateLogin(Request $request)
 {
     $request->validate([
