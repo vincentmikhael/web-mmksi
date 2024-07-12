@@ -24,18 +24,14 @@
                     <label for="">Gambar background</label>
                     <input type="file" class="form-control" name="background">
                     <label for="">Gambar background thumbnail</label>
-                    <input type="file" required class="form-control" name="background_thumbnail">
+                    <input type="file" class="form-control" name="background_thumbnail">
                     <label for="">Sub text 1</label>
                     <input type="text" value="{{$kendaraan->subtext1}}" required class="form-control" name="subtext1">
                     <label for="">Sub text 2</label>
                     <input type="text" value="{{$kendaraan->subtext2}}" required class="form-control" name="subtext2">
-                    <label for="">Foto 360 exterior</label>
-                    <br>
-                    <small>Buat barisan gambar dengan ukuran per gambar adalah 320x320 dan setiap row maximal 4 gambar. <br> 
-                    <a download="" href="{{asset('img/watch.jpg')}}" class="text-danger">Download contoh gambar</a></small>
-                    <input type="file" class="form-control" name="foto_exterior">
-                    <label for="">Total isi foto exterior</label>
-                    <input type="number" value="{{$kendaraan->isi_foto_exterior}}" class="form-control" name="isi_foto_exterior">
+                    <label for="">Link 360 exterior</label> <small>Link iframe <a href="https://sirv.com">Sirv</a>. <br> 
+                        <input type="text" value="{{$kendaraan->foto_exterior}}" placeholder="<iframe...." class="form-control" name="foto_exterior">
+
                     <label for="">Foto 360 interior (foto panorama)</label>
                     <input type="file" class="form-control" name="foto_interior">
 

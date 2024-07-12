@@ -18,6 +18,8 @@ use App\Http\Controllers\Kendaraan\LineupController;
 use App\Http\Controllers\Kendaraan\PerformaceController;
 use App\Http\Controllers\Kendaraan\SafetyController;
 use App\Http\Controllers\CabangController;
+use App\Http\Controllers\Karir\KarirApplyController;
+use App\Http\Controllers\Karir\KarirController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\SejarahController;
@@ -35,6 +37,15 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/privacy-policy',function(){
+    return view('main.law.privacy');
+});
+
+Route::get('/list-karir',[KarirController::class,'show']);
+Route::get('/karir/pelamar/{id}',[KarirController::class,'pelamar']);
+Route::get('/list-karir/{slug}',[KarirApplyController::class,'index']);
+Route::post('/list-karir/{slug}',[KarirApplyController::class,'add_action']);
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/carousel',[CarouselController::class,'index']);
 Route::post('/banner',[CarouselController::class,'add_banner']);
@@ -46,6 +57,13 @@ Route::post('/brosur/add',[BrosurController::class,'add_brosur']);
 Route::get('/brosur/edit/{id}',[BrosurController::class,'edit']);
 Route::post('/brosur/edit/{id}',[BrosurController::class,'update']);
 Route::get('/brosur/delete/{id}',[BrosurController::class,'delete']);
+
+Route::get('/karir',[KarirController::class,'index']);
+Route::get('/karir/add',[KarirController::class,'add']);
+Route::post('/karir/add',[KarirController::class,'add_action']);
+Route::get('/karir/edit/{id}',[KarirController::class,'edit']);
+Route::post('/karir/edit/{id}',[KarirController::class,'update']);
+Route::get('/karir/delete/{id}',[KarirController::class,'delete']);
 
 Route::get('/cms',[BeritaController::class,'index']);
 Route::get('/cms/add',[BeritaController::class,'add']);

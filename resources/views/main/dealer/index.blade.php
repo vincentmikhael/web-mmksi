@@ -2,6 +2,9 @@
 
 @section('content')
 {{-- https://alamat.thecloudalert.com/api/kabkota/get/ --}}
+<link rel="stylesheet" href="{{asset('css/isolate-bootstrap.css')}}">
+<div class="bootstrap-iso">
+    <br><br><br>
 <div class="container mt-5">
     <form class="row align-items-center">
         <div class="col-md-2">
@@ -25,43 +28,43 @@
             </select>
         </div>
         <div class="col-2">
-            <button class="btn btn-primary">Filter</button>
+            <button class="btn btn-dark">Filter</button>
         </div>
     </form>
 
     <hr>
 
-    <div class="row">
+    <div class="row mb-5 pb-4">
         @forelse ($dealer as $item)
-            <div class="col-md-4 col-12">
+            <div class="col-md-4 col-6 my-2 my-md-0">
                 <div class="card">
-                    <div class="container mt-4 mb-3">
-                        <h3>{{$item->nama}}</h3>
+                    <div class="container mt-4">
+                        <h4>{{$item->nama}}</h4>
                         <p>{{$item->layanan}}</p>
-                        <a href="{{$item->gmaps}}" class="badge bg-danger">Cek google maps</a>
+                        <a href="{{$item->gmaps}}" class="btn btn-sm btn-dark">Cek google maps</a>
                     </div>
 
-                        <div class="bg-light py-2">
+                        <div class="bg-light py-1">
                             <div class="container">
-                                <p>Alamat</p>
+                                <b>Alamat</b> <br>
                                 {{$item->alamat}} - {{$item->kota}}
                             </div>
                         </div>
 
-                        <div class="container py-2">
-                            <p>Showroom</p>
+                        <div class="container py-1">
+                            <b>Showroom</b> <br>
                             {!! nl2br($item->showroom) !!}
                         </div>
 
-                        <div class="bg-light py-2">
+                        <div class="bg-light py-1">
                             <div class="container">
-                                <p>Service</p>
+                                <b>Service</b> <br>
                                 {!! nl2br($item->service) !!}
                             </div>
                         </div>
 
-                        <div class="container py-2">
-                            <p>Telepon</p>
+                        <div class="container py-1">
+                            <b>Telepon</b> <br>
                             {{$item->telepon}}
                         </div>
              
@@ -72,5 +75,6 @@
         @endforelse
     </div>
 
+</div>
 </div>
 @endsection

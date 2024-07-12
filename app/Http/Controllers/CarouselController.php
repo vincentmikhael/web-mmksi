@@ -26,16 +26,18 @@ class CarouselController extends Controller
                     $item['background']->move(public_path('images/banner/'), $imageName);
                 }
                 $data[] = [
-                    "sub_text" => $item['sub_text'],
-                    "main_text" => $item['main_text'],
                     "link" => $item['link'],
+                    "text_link" => $item['text_link'],
+                    "link2" => $item['link2'],
+                    "text_link2" => $item['text_link2'],
                     "background" => $imageName ? 'images/banner/'.$imageName : ''
                 ];
             }else{
                 $updated = [
-                    "sub_text" => $item['sub_text'],
                     "link" => $item['link'],
-                    "main_text" => $item['main_text'],
+                    "text_link" => $item['text_link'],
+                    "link2" => $item['link2'],
+                    "text_link2" => $item['text_link2'],
                 ];
                 if(isset($item['background'])){
                     $banner = Banner::where('id',$item['id'])->first();

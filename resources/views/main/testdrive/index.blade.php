@@ -1,7 +1,10 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="container mt-5">
+<link rel="stylesheet" href="{{asset('css/isolate-bootstrap.css')}}">
+<div class="bootstrap-iso">
+    <br><br>
+<div class="container mg-y-40-sm mg-y-80-md pd-x-80-md mt-5 pt-5 mb-5">
     <div class="row">
         <div class="col-md-6">
             <h1>PILIH JADWAL <br>
@@ -109,6 +112,7 @@
           <button type="submit" class="btn btn-dark mt-4">KIRIM PERMINTAAN TEST DRIVE</button>
 
     </form>
+</div>
 </div>
 
 @endsection

@@ -1,318 +1,387 @@
 @extends('layouts.main')
-@section('css')
-    <link rel="stylesheet" href="{{asset('css/produk-slider.css')}}">
-@endsection
+
 @section('content')
-
-
-    <!-- Carousel Start -->
-    <div class="container-fluid p-0 mb-5">
-        <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                @foreach ($banner as $idx => $item)
-                <div class="carousel-item {{$idx == 0 ? 'active' : ''}}">
-                    <img class="w-100" src="{{asset($item->background)}}" alt="Image">
-                    <div class="carousel-caption d-flex align-items-center">
-                        <div class="container">
-                            <div class="row align-items-center justify-content-center justify-content-lg-start">
-                                <div class="col-10 col-lg-7 text-center text-lg-start">
-                                    <h6 class="text-white text-uppercase mb-3 animated slideInDown">{{$item->sub_text}}</h6>
-                                    <h1 class="display-3 text-white mb-4 pb-3 animated slideInDown">{{$item->main_text}}</h1>
-                                    <a href="{{$item->link}}" class="btn btn-primary py-3 px-5 animated slideInDown">Selengkapnya<i class="fa fa-arrow-right ms-3"></i></a>
-                                </div>
-                          
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-    
+<section>
+   <div class="masthead__wrapper">
+      <!-- Swiper -->
+      <div class="swiper-container" id="swiper-homepage">
+         <div class="swiper-wrapper">
+           @forelse ($banner as $idx => $item)
+           <div class="swiper-slide">
+               <div class="slider__background swiper-lazy" data-background="{{asset($item->background)}}">
+                  <div class="swiper-lazy-preloader"></div>
+               </div>
+               <!--  .slider__background -->
+               <div class="banner__background-responsive swiper-lazy" data-background="{{asset($item->background)}}">
+                  <div class="swiper-lazy-preloader"></div>
+               </div>
+               <!--  .banner__background-responsive -->
+               <div class="banner__content banner__content--flex">
+                  <div class="banner__content-wrapper mg-b-20-sm mg-b-160-md">
+                     @if ($item->link)
+                     <a href="{{$item->link}}" class="button button-white button-banner mg-r-20-md mg-b-10-sm mg-b-0-md ev-bl ev-ib-lg">{{$item->text_link}}</a>
+                     @endif
+                     
+                     @if ($item->link2)
+                     <a href="{{$item->link2}}" class="button button-white button-banner ev-bl ev-ib-lg">{{$item->text_link2}}</a>
+                     @endif
+                     
+                  </div>
+               </div>
+               <!--  .banner__content -->
+               <div class="banner__overlay"></div>
+               <!--  .banner__overlay -->
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
-    <!-- Carousel End -->
+           @empty
+               
+           @endforelse
+            
+         </div>
+         <!-- Add Pagination -->
+         <div class="swiper-pagination" id="swiper-homepage-pagination"></div>
+      </div>
+   </div>
+</section>
 
-    <section class="home-product swiper-container swiper-initialized swiper-horizontal swiper-pointer-events">
-        <div class="swiper-wrapper" id="swiper-wrapper-10b910589b247811e3" aria-live="polite" style="transition-duration: 0ms; transform: translate3d(-3792.5px, 0px, 0px);">
-    
-            @foreach ($kendaraan as $item)
-           <div class="swiper-slide" role="group" aria-label="1 / 7" style="margin-right: 60px;" data-swiper-slide-index="0">
-              <div class="swiper-item">
-                 <div class="swiper-item-wrapper">
-                    <div class="swiper-item-head">
-                       <a href="/produk/kendaraan/{{$item->slug}}" title="L100 EV" class="swiper-item-trap"></a>
-                       <div class="swiper-item-image">
-                          <img style="object-fit: contain; width: 100%; height: 280px;" src="{{$item->gambar}}" alt="L100 EV">
-                       </div>
-                       <div class="swiper-item-background">
-                          <img src="{{$item->background_thumbnail}}" alt="L100 EV">
-                       </div>
+<section id="cars" class="tracked-section mg-t-20-sm mg-b-10-sm mg-t-30-md pd-b-40-sm">
+   <div class="swiper-container slider slider--cars" data-settings="{
+   " autoheight":="" true="" }"="">
+   <div class="swiper-wrapper">
+       @forelse ($kendaraan as $item)
+       <div class="swiper-slide">
+           <div class="slider__item">
+              <div class="slider__item-wrapper">
+                 <div class="slider__item-head mg-b-70-sm mg-b-20-md">
+                    <a href="/produk/kendaraan/{{$item->slug}}" class="link-trap learnmorehome_thumbnail"></a>
+                    <div class="slider__item-image">
+                       <img src="{{$item->gambar}}" srcset="{{$item->gambar}} 1x, {{$item->gambar}} 2x" alt="XFORCE">
                     </div>
-                    <div class="swiper-item-body">
-                       <h3>{{$item->nama}}</h3>
-                       <p>Mulai dari {{$item->harga}}</p>
-                       <a class="btn btn-outline-dark" href="/produk/kendaraan/{{$item->slug}}" title="L100 EV" class="button button-secondary-other button-more">Selengkapnya</a>
+                    <div class="slider__item-background">
+                       <img src="{{$item->background_thumbnail}}" srcset="{{$item->background_thumbnail}} 1x, {{$item->background_thumbnail}} 2x" alt="">
                     </div>
+                 </div>
+                 <div class="slider__item-body">
+                    <h3>{{$item->nama}}</h3>
+                    <p>Mulai dari {{$item->harga}}</p>
+                    <a href="/produk/kendaraan/{{$item->slug}}" class="button button-outline-secondary learnmorehome_thumbnail">Selengkapnya</a>
                  </div>
               </div>
            </div>
-           @endforeach  
+        </div>
+       @empty
            
-          
-        </div>
-        <div class="swiper-button-prev swiper-button-product-prev mt-5" tabindex="0" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-10b910589b247811e3"></div>
-        <div class="swiper-button-next swiper-button-product-next mt-5" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-10b910589b247811e3"></div>
-        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-     </section>
-    
+       @endforelse
+      
 
-   
-<div class="bg-dark py-5">
-    <div id="carousel-youtube" class="owl-carousel my-5 owl-theme container">
-        @foreach ($youtube as $item)
-        <div>
-            <iframe style="width: 100%; aspect-ratio: 16 / 9;" src="{{$item->link}}" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-        @endforeach    
-    </div>
+   </div>
+   <div class="swiper-button-prev swiper-cars-button-prev"></div>
+   <div class="swiper-button-next swiper-cars-button-next"></div>
+   </div>
+</section>
+
+<div class="py-5" style="padding-top: 50px; background-color: black;">
+   <div id="carousel-youtube" class="owl-carousel my-5 owl-theme container">
+       @foreach ($youtube as $item)
+       <div>
+           <iframe style="width: 100%; aspect-ratio: 16 / 9;" src="{{$item->link}}" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+       </div>
+       @endforeach    
+   </div>
 </div>
-
-
-
-    <!-- About Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-6 pt-4" style="min-height: 400px;">
-                    <div class="position-relative h-100 wow fadeIn" data-wow-delay="0.1s">
-                        <img class="position-absolute img-fluid w-100 h-100" src="{{asset($promo->gambar)}}" style="object-fit: cover;" alt="">
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="d-flex justify-content-between">
-                        <h4 class="text-primary text-uppercase">PROMO</h4>
-                        <a href="/berita?kategori=Promosi">Selengkapnya</a>
-                    </div>
-                    
-                    <h1 class="mb-4">{{$promo->judul}}</h1>
-                    <p class="mb-4">{!!Illuminate\Support\Str::limit($promo->content,200)!!}</p>
-          
-                    <a href="/berita/{{$promo->slug}}" class="btn btn-primary py-3 px-5">Read More<i class="fa fa-arrow-right ms-3"></i></a>
-                </div>
+<section>
+   <div class="banner banner--full c-white text-center text-md-left">
+      <div class="banner__container">
+         <div class="container">
+            <div class="row">
+               <div class="ev-sm-12 pd-t-20-sm pd-b-15-sm fs-12-sm fs-20-md">
+                  MITSUBISHI MOTORS 50th Anniversary
+               </div>
             </div>
-        </div>
-    </div>
-    <!-- About End -->
-
-
-    <!-- Fact Start -->
-  
-    <!-- Fact End -->
-
-
-    <!-- Service Start -->
-    <div class="bg-dark">
-    <div class="container-xxl service py-5">
-        <div class="container">
-            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h1 class="mb-5 text-white">Berita & Promo</h1>
+         </div>
+         <div class="border-bottom"></div>
+         <div class="container">
+            <div class="row">
+               <div class="ev-sm-12 pd-t-20-sm pd-b-30-sm">
+                  <h2 class="title-primary_large mg-t-70-md">EVERY ADVENTURE IN LIFE IS WONDERFUL</h2>
+                  <p class="fs-24-md mg-b-0-md">#TemanSejalan</p>
+                  <a href="https://www.mitsubishi-motors.co.id/life-adventure" class="button button-outline-white mg-t-80-sm mg-t-50-md mg-b-100-md mg-b-0-sm">See Our Story</a>
+               </div>
             </div>
-            <div class="row g-4 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="col-lg-4">
-                    <div class="nav w-100 nav-pills me-4">
-                        <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4 active" data-bs-toggle="pill" data-bs-target="#tab-pane-1" type="button">
-                            <i class="fa fa-car-side fa-2x me-3"></i>
-                            <h4 class="m-0">Berita</h4>
-                        </button>
-                        <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4" data-bs-toggle="pill" data-bs-target="#tab-pane-2" type="button">
-                            <i class="fa fa-car fa-2x me-3"></i>
-                            <h4 class="m-0">Promo</h4>
-                        </button>
-                        <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4" data-bs-toggle="pill" data-bs-target="#tab-pane-3" type="button">
-                            <i class="fa fa-cog fa-2x me-3"></i>
-                            <h4 class="m-0">Siaran Pers</h4>
-                        </button>
-            
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="tab-content w-100">
-                        <div class="tab-pane fade show active" id="tab-pane-1">
-                            <div class="row g-4">
-                                <div class="col-md-6" style="min-height: 350px;">
-                                    <div class="position-relative h-100">
-                                        <img class="position-absolute img-fluid w-100 h-100" src="{{asset($berita->gambar)}}"
-                                            style="object-fit: cover;" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <h3 class="mb-3 text-white">{{$berita->judul}}</h3>
-                                    <p class="mb-4 text-white">{!!Illuminate\Support\Str::limit($berita->content,200)!!}</p>
-                                    <a href="/berita/{{$berita->slug}}" class="btn btn-primary py-3 px-5 mt-3">Read More<i class="fa fa-arrow-right ms-3"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="tab-pane-2">
-                            <div class="row g-4">
-                                <div class="col-md-6" style="min-height: 350px;">
-                                    <div class="position-relative h-100">
-                                        <img class="position-absolute img-fluid w-100 h-100" src="{{asset($promo->gambar)}}"
-                                            style="object-fit: cover;" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <h3 class="mb-3 text-white">{{$promo->judul}}</h3>
-                                    <p class="mb-4 text-white">{!!Illuminate\Support\Str::limit($promo->content,200)!!}</p>
-                                    <a href="/berita/{{$promo->slug}}" class="btn btn-primary py-3 px-5 mt-3">Read More<i class="fa fa-arrow-right ms-3"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="tab-pane-3">
-                            <div class="row g-4">
-                                <div class="col-md-6" style="min-height: 350px;">
-                                    <div class="position-relative h-100">
-                                        <img class="position-absolute img-fluid w-100 h-100" src="{{asset($pers->gambar)}}"
-                                            style="object-fit: cover;" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <h3 class="mb-3 text-white">{{$pers->judul}}</h3>
-                                    <p class="mb-4 text-white">{!!Illuminate\Support\Str::limit($pers->content,200)!!}</p>
-                                    <a href="/berita/{{$pers->slug}}" class="btn btn-primary py-3 px-5 mt-3">Read More<i class="fa fa-arrow-right ms-3"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="tab-pane-4">
-                            <div class="row g-4">
-                                <div class="col-md-6" style="min-height: 350px;">
-                                    <div class="position-relative h-100">
-                                        <img class="position-absolute img-fluid w-100 h-100" src="img/service-4.jpg"
-                                            style="object-fit: cover;" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <h3 class="mb-3">15 Years Of Experience In Auto Servicing</h3>
-                                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                                    <p><i class="fa fa-check text-success me-3"></i>Quality Servicing</p>
-                                    <p><i class="fa fa-check text-success me-3"></i>Expert Workers</p>
-                                    <p><i class="fa fa-check text-success me-3"></i>Modern Equipment</p>
-                                    <a href="" class="btn btn-primary py-3 px-5 mt-3">Read More<i class="fa fa-arrow-right ms-3"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+         </div>
+      </div>
+      <div class="banner__background d-desktop lazy" data-bg="https://static.mitsubishi-motors.co.id/compress/assets/img/media-banner-desktop.webp" data-bg-hidpi="https://static.mitsubishi-motors.co.id/compress/assets/img/media-banner-desktop@2x.webp"></div>
+      <div class="banner__background d-mobile lazy" data-bg="https://static.mitsubishi-motors.co.id/compress/assets/img/media-banner.webp" data-bg-hidpi="https://static.mitsubishi-motors.co.id/compress/assets/img/media-banner@2x.webp"></div>
+   </div>
+</section>
+<section id="promos" class="tracked-section pd-t-35-sm pd-t-50-md pd-b-60-md pd-b-40-sm bg-grey overflow-hidden">
+   <div class="container">
+      <div class="row">
+         <div class="ev-12-sm">
+            <h2 class="title-primary_large mg-b-30-sm text-center">PROMOSI</h2>
+         </div>
+      </div>
+      <div class="row">
+         <div class="ev-12-sm">
+            <div class="card card--clean card--clean-horizontal pd-x-30-sm pd-x-20-md">
+               <div class="card__image mg-b-15-sm mg-b-0-md">
+                  <img src="{{asset($promo->gambar)}}" srcset="{{asset($promo->gambar)}} 1x, {{asset($promo->gambar)}} 2x" alt="">
+               </div>
+               <div class="card__content pd-x-20-sm pd-x-0-md pd-l-80-md">
+                  <div class="card__meta fs-12-sm fs-16-md c-soft ev-uppercase mg-b-10-sm">
+                     <span>{{date('d M Y',strtotime($promo->tanggal))}}</span>
+                  </div>
+                  <h3 class="card__title fs-20-sm fs-32-md">
+                     <a href="/berita/{{$promo->slug}}">{{$promo->judul}}</a>
+                  </h3>
+                  <p class="c-dark-grey-solid fs-14-sm fs-16-md mg-b-20-sm mg-b-30-md">{{$promo->judul}}</p>
+                  <a id="learnmorehome_promo" href="/berita/{{$promo->slug}}" class="button button-underline-secondary">Selengkapnya</a>
+               </div>
             </div>
-        </div>
-    </div>
+         </div>
+      </div>
+   </div>
+</section>
+<section id="news-events" class="tracked-section bg-black c-white mg-b-10-sm mg-b-40-md pd-t-40-sm pd-b-40-sm overflow-hidden">
+<div class="container">
+<div class="row">
+<div class="ev-sm-12 text-center">
+   <h2 class="title-primary_large mg-b-20-sm">Berita &amp; Kegiatan</h2>
 </div>
-    <!-- Service End -->
+</div>
+<div class="row-flex justify-content-center">
+<div class="ev-flex-sm-12 ev-flex-md-10">
+   <div class="tab tab--clean">
+      <ul class="tab__control">
+         <li class="tab-link" data-tab="tab-berita">
+            <a href="#tab-berita" class="">Berita</a>
+         </li>
+         <li class="tab-link" data-tab="tab-acara">
+            <a href="#tab-acara" class="active">Kegiatan</a>
+         </li>
+         <li class="tab-link" data-tab="tab-siaran-pers">
+            <a href="#tab-siaran-pers">Siaran Pers</a></li>					
+      </ul>
+      <div class="tab__list">
+         <div class="tab__item" id="tab-berita">
+            <div class="swiper-container slider sliders slider--card-clean pd-b-60-md slider-0 swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events" data-settings="{
+               &quot;breakpoints&quot;: {
+                  &quot;640&quot;: {
+                     &quot;slidesPerView&quot;: 3,
+                     &quot;spaceBetween&quot;: 24
+                  }
+               }
+            }">
+               <div class="swiper-wrapper" id="swiper-wrapper-91cab7d39966b2bf" aria-live="polite">
+                           @forelse ($berita_list as $item)
+                           <div class="swiper-slide" style="width: 374px; margin-right: 20px;" role="group" aria-label="1 / 3">
+                     <div class="card card--clean">
+                        <div class="card__image card__image--stacked mg-b-60-sm mg-b-0-md">
+                           <img src="{{asset($item->gambar)}}" alt="{{$item->judul}}" class="d-mobile">
+                           <img src="{{asset($item->gambar)}}" alt="{{$item->judul}}" class="d-desktop">
+                        </div>
+                        <div class="card__content card__content--stacked">
+                           <div class="card__meta">
+                              <span>{{date('d M Y',strtotime($item->tanggal))}}</span>
+                           </div>
+                           <h3 class="card__title c-white">
+                              <a href="/berita/{{$item->slug}}">{{$item->judul}}</a>
+                           </h3>
+                           <a href="/berita/{{$item->slug}}" class="button button-underline-white">Selengkapnya</a>
+                        </div>
+                     </div>
+                  </div>
+                           @empty
+                               
+                           @endforelse
+                                          </div>
+               <div class="swiper-pagination swiper-pagination--light slider-pagination-0 swiper-pagination-clickable swiper-pagination-bullets"><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span></div>
+               <div class="swiper-button-prev swiper-card-button-prev swiper-button-prev--light slider-button-prev-0 swiper-button-disabled" tabindex="-1" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-91cab7d39966b2bf" aria-disabled="true"></div>
+               <div class="swiper-button-next swiper-card-button-next swiper-button-next--light slider-button-next-0" tabindex="-1" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-91cab7d39966b2bf" aria-disabled="true"></div>
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+         </div>
 
+         
+         <div class="tab__item active" id="tab-acara">
+            <div class="swiper-container slider sliders slider--card-clean pd-b-60-md slider-1 swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events" data-settings="{
+               &quot;breakpoints&quot;: {
+                  &quot;640&quot;: {
+                     &quot;slidesPerView&quot;: 3,
+                     &quot;spaceBetween&quot;: 24
+                  }
+               }
+            }">
+               <div class="swiper-wrapper" id="swiper-wrapper-ee0ee7f6672d75af" aria-live="polite" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                           @forelse ($promo_list as $item)
+                           <div class="swiper-slide" style="width: 374px; margin-right: 20px;" role="group" aria-label="1 / 3">
+                     <div class="card card--clean">
+                        <div class="card__image card__image--stacked mg-b-60-sm mg-b-0-md">
+                           <img src="{{asset($item->gambar)}}" alt="{{$item->judul}}" class="d-mobile">
+                           <img src="{{asset($item->gambar)}}" alt="{{$item->judul}}" class="d-desktop">
+                        </div>
+                        <div class="card__content card__content--stacked">
+                           <div class="card__meta">
+                              <span>{{date('d M Y',strtotime($item->tanggal))}}</span>
+                           </div>
+                           <h3 class="card__title c-white">
+                              <a href="/berita/{{$item->slug}}">{{$item->judul}}</a>
+                           </h3>
+                           <a href="/berita/{{$item->slug}}" class="button button-underline-white">Selengkapnya</a>
+                        </div>
+                     </div>
+                  </div>
+                           @empty
+                               
+                           @endforelse
+                     
+                                          </div>
+               <div class="swiper-pagination swiper-pagination--light slider-pagination-1 swiper-pagination-clickable swiper-pagination-bullets"><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span></div>
+               <div class="swiper-button-prev swiper-card-button-prev swiper-button-prev--light slider-button-prev-1 swiper-button-disabled" tabindex="-1" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-ee0ee7f6672d75af" aria-disabled="true"></div>
+               <div class="swiper-button-next swiper-card-button-next swiper-button-next--light slider-button-next-1" tabindex="-1" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-ee0ee7f6672d75af" aria-disabled="true"></div>
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+         </div>
 
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-5">
-                <div class="col-lg-6 pt-4" style="min-height: 400px;">
-                    <div class="position-relative h-100 wow fadeIn" data-wow-delay="0.1s">
-                        <img class="position-absolute img-fluid w-100 h-100" src="{{asset('images/maintenance/maintenance.png')}}" style="object-fit: cover;" alt="">
-                    </div>
-                </div>
-                <div class="col-lg-6 align-self-center">
-                    <h1 class="mb-4">LAYANAN AFTER SERVICES</h1>
-                    <p class="mb-4">{{$maintenance->text2}}</p>
-          
-                    <a href="/aftersales/maintenance" class="btn btn-primary py-3 px-5">Read More<i class="fa fa-arrow-right ms-3"></i></a>
-                </div>
+         
+         <div class="tab__item" id="tab-siaran-pers">
+            <div class="swiper-container slider sliders slider--card-clean pd-b-60-md slider-2 swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events" data-settings="{
+               &quot;breakpoints&quot;: {
+                  &quot;640&quot;: {
+                     &quot;slidesPerView&quot;: 3,
+                     &quot;spaceBetween&quot;: 24
+                  }
+               }
+            }">
+               <div class="swiper-wrapper" id="swiper-wrapper-b7e1a6942bbc4257" aria-live="polite">
+                           @forelse ($pers_list as $item)
+                           <div class="swiper-slide" style="width: 374px; margin-right: 20px;" role="group" aria-label="1 / 3">
+                     <div class="card card--clean">
+                        <div class="card__image card__image--stacked mg-b-60-sm mg-b-0-md">
+                           <img src="{{asset($item->gambar)}}" alt="{{$item->judul}}" class="d-mobile">
+                           <img src="{{asset($item->gambar)}}" alt="{{$item->judul}}" class="d-desktop">
+                        </div>
+                        <div class="card__content card__content--stacked">
+                           <div class="card__meta">
+                              <span>{{date('d M Y',strtotime($item->tanggal))}}</span>
+                           </div>
+                           <h3 class="card__title c-white">
+                              <a href="/berita/{{$item->slug}}">{{$item->judul}}</a>
+                           </h3>
+                           <a href="/berita/{{$item->slug}}" class="button button-underline-white">Selengkapnya</a>
+                        </div>
+                     </div>
+                  </div>
+                           @empty
+                               
+                           @endforelse
+                                          </div>
+               <div class="swiper-pagination swiper-pagination--light slider-pagination-2 swiper-pagination-clickable swiper-pagination-bullets"><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span></div>
+               <div class="swiper-button-prev swiper-card-button-prev swiper-button-prev--light slider-button-prev-2 swiper-button-disabled" tabindex="-1" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-b7e1a6942bbc4257" aria-disabled="true"></div>
+               <div class="swiper-button-next swiper-card-button-next swiper-button-next--light slider-button-next-2" tabindex="-1" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-b7e1a6942bbc4257" aria-disabled="true"></div>
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+         </div>
+      </div>
+   </div>
+</div>
+</div>
+</div>
+</section>
+<section id="aftersales" class="tracked-section mg-b-10-sm mg-b-40-md">
+   <div class="container">
+      <div class="row">
+         <div class="ev-sm-12 pd-x-10-sm pd-x-20-md">
+            <div class="banner banner__secondary pd-x-0-sm mg-y-0-sm">
+               <div class="banner__secondary-container">
+                  <div class="banner__secondary-content pd-y-40-sm">
+                     <div class="row-flex justify-content-md-end">
+                        <div class="ev-flex-sm-12 ev-flex-xmd-5 pd-t-190-sm pd-t-70-md pd-b-70-md fs-14-sm fs-16-md">
+                           <h2 class="title-primary_large mg-b-10-sm pd-r-40-sm pd-r-0-md">Layanan Purna Jual</h2>
+                           <p>Layanan perawatan dan perbaikan kendaraan dilakukan oleh tenaga mekanik yang profesional dengan menggunakan peralatan yang modern.</p>
+                           <a id="learnmorehome_aftersalesservice" href="/aftersales/maintenance" class="button button-outline-secondary">Selengkapnya</a>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="banner__secondary-background banner__secondary-desktop lazy" data-bg="https://static.mitsubishi-motors.co.id/compress/assets/img/aftersales-banner-desktop-03012022.webp" data-bg-hidpi="https://static.mitsubishi-motors.co.id/compress/assets/img/aftersales-banner-desktop-03012022@2x.webp"></div>
+                  <div class="banner__secondary-background banner__secondary-mobile banner-diamond--mobile-image lazy" data-bg="https://static.mitsubishi-motors.co.id/compress/assets/img/aftersales-banner-mobile-03012022.webp" data-bg-hidpi="https://static.mitsubishi-motors.co.id/compress/assets/img/aftersales-banner-mobile-03012022@2x.webp"></div>
+               </div>
             </div>
-        </div>
-    </div>
-
-
- @endsection
-
- @section('js')
- <script>
-    var swiper = new Swiper(".home-product, .archive-product, .pricelist-product", {
-        lazy: !0,
-        slidesPerView: "auto",
-        centeredSlides: !0,
-        speed: 1e3,
-        spaceBetween: 16,
-        slideToClickedSlide: !0,
-        loop: !0,
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev"
-        },
-        breakpoints: {
-            480: {
-                spaceBetween: 60
-            }
-        }
-    })
-    
-    $('#carousel-youtube').owlCarousel({
-loop:true,
-margin:50,
-nav:true,
-navText : [`<button style="opacity: 1;" class="carousel-control-prev" type="button"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>`,`<button style="opacity: 1;" class="carousel-control-next" type="button"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>`],
-responsive:{
-    0:{
-        items:1
-    },
-    700:{
-        items:2
-    },
-    1000:{
-        items:3
-    }
-}
-})
-
-$('#carousel-kendaraan').owlCarousel({
-loop:true,
-margin:50,
-center: true,
-animateIn: true,
-nav:true,
-navText : [`<button style="opacity: 1;" class="carousel-control-prev" type="button"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>`,`<button style="opacity: 1;" class="carousel-control-next" type="button"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>`],
-responsive:{
-    0:{
-        items:1
-    },
-    700:{
-        items:3
-    },
-    1000:{
-        items:3
-    }
-}
-})
-</script>
- @endsection
+         </div>
+      </div>
+   </div>
+</section>
+<section id="download-apps" class="tracked-section mg-b-10-sm mg-b-40-md">
+   <div class="container">
+      <div class="row">
+         <div class="ev-sm-12 pd-x-10-sm pd-x-20-md">
+            <div class="banner banner__secondary pd-x-0-sm mg-y-0-sm">
+               <div class="banner__secondary-container">
+                  <div class="banner__secondary-content pd-t-35-md pd-y-30-sm pd-y-0-md">
+                     <div class="container pd-x-20-sm pd-x-60-md">
+                        <div class="row">
+                           <div class="d-desktop">
+                              <div class="ev-md-7 pd-x-0-sm c-white fs-15-sm fs-22-md">
+                                 <h2 class="title-primary_xmedium-mmid mg-b-20-sm mg-b-20-md pd-r-20-sm pd-r-0-md">APLIKASI MY MITSUBISHI MOTORS ID SOLUSI KEBUTUHAN DAN INFORMASI KENDARAAN ANDA</h2>
+                                 <!--  .title-primary_large -->
+                                 <p class="mg-t-0-sm mg-b-0-md mg-b-250-sm">Akses digital Dokumen Kendaran hingga <br> 
+                                    Service History dalam satu genggaman.<br>
+                                 </p>
+                                 <div class="detail mg-t-0-sm" style="display:flex;">
+                                    <img class="mg-b-0-sm mg-t-20-md mg-r-20-md mg-r-20-sm" width="150" height="150" src="/web/images/z4aCzpwVMvBJ.webp" srcset="images/z4aCzpwVMvBJ.webp 2x" alt="App Store">
+                                    <div class="detail-info mg-t-30-md fs-10-sm fs-16-md">
+                                       <p>Unduh aplikasi My Mitsubishi Motors ID <br> di App Store dan Play Store.</p>
+                                       <ul class="product__ads">
+                                          <li>
+                                             <a href="https://apps.apple.com/us/app/my-mitsubishi-motors-id/id1280830456" target="_blank">
+                                             <img class="mg-b-0-sm" width="160" height="48" src="/web/images/CJfi3yXBMMWY.webp" srcset="images/appstore%402x.webp 2x" alt="App Store">
+                                             </a>
+                                          </li>
+                                          <li>
+                                             <a href="https://mmksi.com/Download-MMID" target="_blank">
+                                             <img class="mg-b-0-sm" width="160" height="49" src="/web/images/MWf32X4vMsUe.webp" srcset="images/googleplay%402x.webp 2x" alt="Google Play">
+                                             </a>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="d-mobile">
+                              <div class="ev-sm-20 pd-x-0-sm pd-y-0-sm c-white fs-16-sm fs-22-md">
+                                 <h2 class="fs-22-sm title-primary_xmedium-mmid mg-b-10-sm mg-b-20-md pd-r-20-sm pd-r-0-md">APLIKASI <br>MY MITSUBISHI MOTORS ID SOLUSI KEBUTUHAN DAN INFORMASI KENDARAAN ANDA</h2>
+                                 <!--  .title-primary_large -->
+                                 <p class="mg-t-0-sm mg-b-0-md mg-b-20-sm">Akses digital Dokumen Kendaran hingga <br> 
+                                    Service History dalam satu genggaman.<br>
+                                 </p>
+                                 <div class="detail mg-t-0-sm mg-b-350-sm" style="display:flex;">
+                                    <img class="mg-b-0-sm mg-t-20-md mg-r-20-md mg-r-20-sm" width="90" height="90" src="/web/images/z4aCzpwVMvBJ.webp" srcset="images/z4aCzpwVMvBJ.webp 2x" alt="App Store">
+                                    <div class="detail-info mg-b-50-sm fs-12-sm fs-16-md">
+                                       <p>Unduh aplikasi My Mitsubishi Motors ID di App Store dan Play Store.</p>
+                                       <ul class="product__ads">
+                                          <li>
+                                             <a href="https://apps.apple.com/us/app/my-mitsubishi-motors-id/id1280830456" target="_blank">
+                                             <img class="mg-b-0-sm" width="100" height="30" src="/web/images/CJfi3yXBMMWY.webp" srcset="images/appstore%402x.webp 2x" alt="App Store">
+                                             </a>
+                                          </li>
+                                          <li>
+                                             <a href="http://bit.ly/2XKLaUE" target="_blank">
+                                             <img class="mg-b-0-sm" width="100" height="31" src="/web/images/MWf32X4vMsUe.webp" srcset="images/googleplay%402x.webp 2x" alt="Google Play">
+                                             </a>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="banner__secondary-background banner__secondary-desktop lazy" data-bg="https://static.mitsubishi-motors.co.id/compress/assets/img/banner/choose_design_desktop.webp" data-bg-hidpi="https://static.mitsubishi-motors.co.id/compress/assets/img/banner/choose_design_desktop.webp"></div>
+                  <div class="banner__secondary-background banner__secondary-mobile lazy" data-bg="https://static.mitsubishi-motors.co.id/compress/assets/img/banner/choose_design_mobilephone1.webp" data-bg-hidpi="https://static.mitsubishi-motors.co.id/compress/assets/img/banner/choose_design_mobilephone1.webp"></div>
+                  <div class="d-desktop">
+                     <div class="overlay overlay__black"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+@endsection

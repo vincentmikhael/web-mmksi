@@ -2,6 +2,8 @@
 
 @section('content')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+<link rel="stylesheet" href="{{asset('css/isolate-bootstrap.css')}}">
+
 <style>
     @import url("https://fonts.googleapis.com/css?family=Open+Sans");
 .wrapper {
@@ -23,7 +25,7 @@
   font-size: 0.9em;
 }
 
-.buttons-wrapper {
+.g-buttons-wrapper {
   max-width: 200px;
   width: 100%;
   margin: 0 auto;
@@ -32,7 +34,7 @@
   align-items: center;
 }
 
-.button {
+.g-button {
   position: relative;
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -43,7 +45,7 @@
   background: #fff;
   font-size: 0;
 }
-.button::before, .button::after {
+.g-button::before, .g-button::after {
   content: "";
   position: absolute;
   top: 10px;
@@ -54,7 +56,7 @@
   height: 15px;
   transform: translate(-45%) rotate(-45deg);
 }
-.button::after {
+.g-button::after {
   transform: translate(5%) rotate(-45deg);
 }
 
@@ -67,12 +69,14 @@
 #panorama {
     height: 500px;
 }
+
 @media only screen and (max-width: 800px) {
     #panorama {
     height: 300px;
 }
 }
 </style>
+<div class="bootstrap-iso">
 <div class="container-fluid p-0 mb-5">
     <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -94,7 +98,7 @@
     </div>
 </div>
 <div class="container">
-    <div class="d-flex justify-content-around">
+    <div class="d-md-flex justify-content-around">
         <a href="#lineup" class="h5 text-muted">LINEUP</a>
         <a href="#eksterior" class="h5 text-muted">EKSTERIOR</a>
         <a href="#interior" class="h5 text-muted">INTERIOR</a>
@@ -106,15 +110,15 @@
 
     <h1 class="mt-5">LINEUP</h1>
         <div id="lineup" class="row">
-          @foreach ($lineup as $item)
-            <div class="col-md-3">
+          @foreach ($lineup as $idx_main => $item)
+            <div id="mobil-main-{{$idx_main}}" class="col-md-3">
                 @foreach ($item->lineup_warna as $idx => $img)
                     <img style="width: 100%; height: 150px;" id="mobil-{{$idx}}" class="mobil {{$idx != 0 ? 'd-none' : 'd-block'}}" src="{{asset($img->gambar)}}" alt="">
                 @endforeach
                 <h5>{{$item->nama}}</h5>
                 <div class="d-flex align-items-center gap-1">
                     @foreach ($item->lineup_warna as $idx => $warna)
-                    <div onclick="ubahMobil({{$idx}})" style="width: 30px; height: 30px; background-color:{{$warna->kode_warna}}; "></div>
+                    <div onclick="ubahMobil({{$idx}},{{$idx_main}})" style="width: 30px; height: 30px; background-color:{{$warna->kode_warna}}; "></div>
                     @endforeach
                     
                 </div>
@@ -165,39 +169,75 @@
             @endforeach    
         </div>
 
-        <h1 class="mt-5">360 PREVIEW</h1>
-        <nav id="preview">
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Eksterior</button>
-              <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Interior</button>
-            </div>
-          </nav>
 
 
-          <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                <div class="wrapper">
-                    <p>Drag, use keyboard arrows (&larr; & &rarr;) or click to rotate image.</p>
-                      <div id="threesixty"></div>
-                    <div class="buttons-wrapper">
-                      <button class="button" id="prev">Prev</button>
-                      
-                        <button class="button" id="next">Next</button>
+
+        {{-- <section id="gallery" class="pd-y-30-sm pd-y-40-md 360-trigger tracked-section" style="background: linear-gradient(180deg, #ffffff 0%, #ffffff 55%, #F7F7F7 50%, #F7F7F7 100%);"> --}}
+            <section id="gallery" class="pd-y-30-sm pd-y-40-md 360-trigger tracked-section">
+            <div class="container">
+                <div id="preview" class="row">
+                    <div class="ev-sm-12">
+                        <h2 class="title-primary_large text-center mg-b-20-sm mg-b-30-md">
+                            Pratinjau 360°
+                    </h2></div>
+                </div>
+
+                <div class="row-flex">
+                    <div class="ev-flex-sm-12 text-center">
+                        <h3 class="title-primary_medium--alt"><b>Take it for a spin.</b></h3>
+                        <div class="tab tab--clean">
+                                                            <ul class="tab__control">
+                                    <li class="tab-link" data-tab="tab-exterior">
+                                        <a href="#tab-exterior" class="active">Eksterior</a>
+                                    </li>
+                                    <li class="tab-link" data-tab="tab-interior">
+                                        <a href="#tab-interior">Interior</a>
+                                    </li>
+                                                                    </ul>
+                                                        <div class="tab__list mg-b-60-md mg-b-25-sm">
+                                <div class="tab__item active" id="tab-exterior">
+                                    
+                                    <div class="product__eksterior">
+                                        {!! $kendaraan->foto_exterior !!}
+                                    </div>
+                                    {{-- <p class="mg-t-n30-sm mg-t-n60-md fs-12-sm c-soft ev-rel ev-z-1">*Detil spesifikasi pada
+                                        kendaraan aktual dapat berbeda, hubungi dealer terdekat untuk informasi lebih lanjut.
+                                    </p> --}}
+                                </div>
+
+
+
+
+                                                                    <div class="tab__item" id="tab-interior">
+                                                                        <div style="width: 100%;" id="panorama"></div>
+                                    </div>
+                                  
+
+                                {{-- <div class="tab__item" id="tab-3d">
+                                    
+                                    <div class="logos mg-t-50-md mg-t-50-sm mg-b-40-md c-soft">
+                                        <img src="https://static.mitsubishi-motors.co.id/compress/asset/img/icon/mira_icon_02_1.webp" alt="" style="max-height:117px; max-width:117px">
+                                    </div>
+
+                                    <p class="mg-t-40-sm mg-b-30-md mg-b-40-sm fs-12-sm fs-16-md c-soft">Aktivasi fitur 3D Xpander Cross akan membutuhkan<br>
+                                        penggunaan data yang cukup besar. </p>
+
+                                    <a target="_blank" href="https://www.mitsubishi-motors.co.id/trackers/products/3d/28" class="button button-outline-secondary finddealer_gallery">Lanjutkan</a>
+                                </div> --}}
+
+                                {{-- <div class="cari-dealer">
+                                    <a href="https://www.mitsubishi-motors.co.id/cari-dealer" class="button button-outline-secondary finddealer_gallery">Cari Dealer</a>
+                                </div> --}}
+                            </div>
+                        </div>
                     </div>
-                  </div>
-
+                </div>
             </div>
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                <div style="width: 100%;" id="panorama"></div>
-            </div>
- 
-          </div>
+        </section>
 
 
-        
 
           
-
         <h1 class="mt-5">SAFETY</h1>
         <div id="safety" class="owl-carousel carousel-a my-5 owl-theme">
             @foreach ($safety as $item)
@@ -250,12 +290,24 @@
 
 
     </div>
+</div>
+<br><br><br>
 
 @endsection
 
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/@mladenilic/threesixty.js/dist/threesixty.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+<script>
+    function ubahMobil(idx,idx_main){
+    document.querySelectorAll('#mobil-main-'+idx_main+' .mobil').forEach(e=>{
+        e.classList.remove('d-block')
+        e.classList.add('d-none')
+    })
+    document.querySelector('#mobil-main-'+idx_main+' #mobil-'+idx).classList.remove('d-none')
+    document.querySelector('#mobil-main-'+idx_main+' #mobil-'+idx).classList.add('d-block')
+}
+</script>
     <script>
         $('.carousel-a').owlCarousel({
     loop:false,
@@ -296,25 +348,17 @@ $('#aksesoris').owlCarousel({
     }
 })
 
-function ubahMobil(idx){
-    document.querySelectorAll('.mobil').forEach(e=>{
-        e.classList.remove('d-block')
-        e.classList.add('d-none')
-    })
-    document.querySelector('#mobil-'+idx).classList.remove('d-none')
-    document.querySelector('#mobil-'+idx).classList.add('d-block')
-}
 
-const threesixty = new ThreeSixty(document.getElementById('threesixty'), {
-  image: '{{asset($kendaraan->foto_exterior)}}',
-  width: 320,
-  height: 320,
-  count: '{{$kendaraan->isi_foto_exterior}}',
-  perRow: 4,
-  speed: 250,
-  prev: document.getElementById('prev'),
-  next: document.getElementById('next')
-});
+// const threesixty = new ThreeSixty(document.getElementById('threesixty'), {
+//   image: '{{asset($kendaraan->foto_exterior)}}',
+//   width: 320,
+//   height: 320,
+//   count: '{{$kendaraan->isi_foto_exterior}}',
+//   perRow: 4,
+//   speed: 250,
+//   prev: document.getElementById('prev'),
+//   next: document.getElementById('next')
+// });
 
 threesixty.play();
     </script>

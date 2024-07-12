@@ -12,15 +12,9 @@
             <div class="card-body">
                 <form action="" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <label for="">Background atas</label>
-                    <input type="file" class="form-control" name="gambar">
-                    <label for="">Text Heading</label>
-                    <input type="text" class="form-control" value="{{$bodicat->text1}}" name="text1">
-                    <label for="">Sub Text</label>
-                    <input type="text" class="form-control" value="{{$bodicat->text2}}" name="text2">
-                    <label for="">Deskripsi</label>
-                    <textarea name="content" id="content" rows="10" cols="80">{{$bodicat->content}}</textarea>
+                    <label for=""><h5>Content</h5> <p class="text-danger">Dilarang menghapus section!! hanya boleh mengganti text atau gambar (untuk mengganti gambar, pilih gambar klik kanan lalu image properties)</p></label>
                     <button class="btn btn-primary mt-4" type="submit">Submit</button>
+                    <textarea name="content" id="content" rows="10" cols="80">{{$bodicat->content}}</textarea>
                 </form>
             </div>
         </div>
@@ -29,13 +23,17 @@
 @endsection
 
 @section('js')
-<script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/4.22.1/standard-all/ckeditor.js"></script>
     <script>
 
         CKEDITOR.replace('content', {
 
         filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
         filebrowserUploadMethod: 'form',
+        allowedContent: true,
+        height: 800,
+        extraAllowedContent: '*(*)',
+        contentsCss: ['/web/css/51KgPtq4wH92.css','/web/css/I8Woz8PY7grU.css','/web/css/tIZyQWZFYtG7.css','https://www.mitsubishi-motors.co.id/css/uikit.min.css','https://static.mitsubishi-motors.co.id/static/app.css?id=7ce75b842535b03f97940fdd2f744067','https://www.mitsubishi-motors.co.id/css/public.css','https://qiscus-sdk.s3-ap-southeast-1.amazonaws.com/public/qismo/qismo-v4.css','https://static.mitsubishi-motors.co.id/static/chatbot/widget.css?v=240711'],
         on: {
             instanceReady: function (evt) {
                 var editor = evt.editor;

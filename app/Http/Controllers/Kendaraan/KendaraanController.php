@@ -51,11 +51,6 @@ class KendaraanController extends Controller
             $request->foto_interior->move(public_path('images/gambar_kendaraan/'), $gambar);
             $data['foto_interior'] = "images/gambar_kendaraan/" . $gambar;
         }
-        if($request->foto_exterior){
-            $gambar = '4' . time() . $request->foto_exterior->getClientOriginalName();
-            $request->foto_exterior->move(public_path('images/gambar_kendaraan/'), $gambar);
-            $data['foto_exterior'] = "images/gambar_kendaraan/" . $gambar;
-        }
 
         $data['slug'] = Str::slug($data['nama'],'-');
 
@@ -64,7 +59,7 @@ class KendaraanController extends Controller
     }
 
     public function update(Request $request,$id){
-        $data = $request->except(['_token','_method','foto_interior','foto_exterior','gambar','background']);
+        $data = $request->except(['_token','_method','foto_interior','gambar','background']);
         $data['updated_by'] = Auth::user()->username;
         $kendaraan = Kendaraan::where('id',$id)->first();
         if($request->foto_interior){
@@ -72,12 +67,6 @@ class KendaraanController extends Controller
             $gambar = '3' . time() . $request->foto_interior->getClientOriginalName();
             $request->foto_interior->move(public_path('images/gambar_kendaraan/'), $gambar);
             $data['foto_interior'] = "images/gambar_kendaraan/" . $gambar;
-        }
-        if($request->foto_exterior){
-            File::delete(public_path($kendaraan->foto_exterior));
-            $gambar = '4' . time() . $request->foto_exterior->getClientOriginalName();
-            $request->foto_exterior->move(public_path('images/gambar_kendaraan/'), $gambar);
-            $data['foto_exterior'] = "images/gambar_kendaraan/" . $gambar;
         }
         if($request->gambar){
             File::delete(public_path($kendaraan->gambar));

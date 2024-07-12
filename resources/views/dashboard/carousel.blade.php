@@ -17,17 +17,21 @@
                   @forelse ($banner as $idx => $item)
                   <div class="row">
                     <input type="hidden" name="item[{{$idx}}][id]" value="{{$item->id}}" >
-                    <div class="col-md-3">
-                      <label for="">Sub text</label>
-                      <input type="text" required value="{{$item->sub_text}}"  name="item[{{$idx}}][sub_text]" class="form-control">
+                    <div class="col-md-2">
+                      <label for="">Text button 1</label>
+                      <input type="text" required value="{{$item->text_link}}"  name="item[{{$idx}}][text_link]" class="form-control">
                     </div>
-                    <div class="col-md-3">
-                      <label for="">Main Text</label>
-                      <input type="text" required value="{{$item->main_text}}"  name="item[{{$idx}}][main_text]" class="form-control">
-                    </div>
-                    <div class="col-md-3">
-                      <label for="">Link button</label>
+                    <div class="col-md-2">
+                      <label for="">Link button 1</label>
                       <input type="text" required value="{{$item->link}}"  name="item[{{$idx}}][link]" class="form-control">
+                    </div>
+                    <div class="col-md-2">
+                      <label for="">Text button 2</label>
+                      <input type="text" required value="{{$item->text_link2}}"  name="item[{{$idx}}][text_link2]" class="form-control">
+                    </div>
+                    <div class="col-md-2">
+                      <label for="">Link button 2</label>
+                      <input type="text" required value="{{$item->link2}}"  name="item[{{$idx}}][link2]" class="form-control">
                     </div>
                     <div class="col-md-3">
                       <label for="">Background banner</label>
@@ -46,16 +50,20 @@
                   <div class="row">
                     <input type="hidden" name="item[0][id]" value="">
                     <div class="col-md-3">
-                      <label for="">Sub text</label>
-                      <input type="text" required name="item[0][sub_text]" class="form-control">
+                      <label for="">Text Button 1</label>
+                      <input type="text" required name="item[0][text_link]" class="form-control">
                     </div>
                     <div class="col-md-3">
-                      <label for="">Main Text</label>
-                      <input type="text" required name="item[0][main_text]" class="form-control">
-                    </div>
-                    <div class="col-md-3">
-                      <label for="">Link button</label>
+                      <label for="">Link button 1</label>
                       <input type="text" required name="item[0][link]" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                      <label for="">Text Button 2</label>
+                      <input type="text" required name="item[0][text_link2]" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                      <label for="">Link button 2</label>
+                      <input type="text" required name="item[0][link2]" class="form-control">
                     </div>
                     <div class="col-md-3">
                       <label for="">Background banner</label>
@@ -126,18 +134,24 @@
                   `
                   <input type="hidden" name="item[${i}][id]" value="">
                   <div class="row">
-                  <div class="col-md-3">
-                    <label for="">Sub text</label>
-                    <input type="text" required  name="item[${i}][sub_text]" class="form-control">
-                  </div>
-                  <div class="col-md-3">
-                    <label for="">Main Text</label>
-                    <input type="text" required  name="item[${i}][main_text]" class="form-control">
-                  </div>
-                  <div class="col-md-3">
-                      <label for="">Link button</label>
+
+                    <div class="col-md-3">
+                      <label for="">Text Button 1</label>
+                      <input type="text" required name="item[${i}][text_link]" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                      <label for="">Link button 1</label>
                       <input type="text" required name="item[${i}][link]" class="form-control">
                     </div>
+                    <div class="col-md-3">
+                      <label for="">Text Button 2</label>
+                      <input type="text" required name="item[${i}][text_link2]" class="form-control">
+                    </div>
+                    <div class="col-md-3">
+                      <label for="">Link button 2</label>
+                      <input type="text" required name="item[${i}][link2]" class="form-control">
+                    </div>
+
                   <div class="col-md-3">
                     <label for="">Background banner</label>
                     <div class="d-flex gap-2 align-items-center justify-content-center">

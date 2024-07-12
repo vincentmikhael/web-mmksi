@@ -1,3 +1,5 @@
+
+
 @extends('layouts.main')
 
 @section('content')
@@ -109,8 +111,24 @@
   background: #888;
 }
 </style>
+<section class="banner mg-t-10-sm" id="next-section">
+  <div class="banner__wrapper ">
+      <div class="banner__background " style="background-image: url(' https://static.mitsubishi-motors.co.id/compress/assets/img/about/bghistory.webp ');">
+      </div>
+      <!--  .banner__background -->
+      <div class=" banner__content ">
+          <!--  .title-primary_large -->
+          <p>{!!$sejarah->content!!}</p>
+          <!--  .c-white -->
+      </div>
+      <!--  .banner__content -->
+  </div>
+  <!--  .banner__wrapper -->
+</section>
+<br><br><br>
 <div class="container mt-5">
-    {!!$sejarah->content!!}
+  
+    
     
 
     <div class="container mt-5">
