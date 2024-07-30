@@ -14,6 +14,11 @@
                     <label for="">Sampul</label> <br>
                     <small>*Rekomendasi ukuran gambar 800x1247 atau ukuran vertikal</small>
                     <input type="file" class="form-control" name="sampul">
+                    <label for="">Kategori</label>
+                    <select name="kategori" class="form-control" id="">
+                        <option value="KENDARAAN PENUMPANG" {{$brosur->kategori == 'KENDARAAN PENUMPANG' ? 'selected' : ''}}>KENDARAAN PENUMPANG</option>
+                        <option value="KENDARAAN NIAGA RINGAN" {{$brosur->kategori == 'KENDARAAN NIAGA RINGAN' ? 'selected' : ''}}>KENDARAAN NIAGA RINGAN</option>
+                    </select>
                     <label for="">File</label>
                     <input type="file" class="form-control" name="link">
 

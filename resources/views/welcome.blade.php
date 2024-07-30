@@ -88,31 +88,7 @@
        @endforeach    
    </div>
 </div>
-<section>
-   <div class="banner banner--full c-white text-center text-md-left">
-      <div class="banner__container">
-         <div class="container">
-            <div class="row">
-               <div class="ev-sm-12 pd-t-20-sm pd-b-15-sm fs-12-sm fs-20-md">
-                  MITSUBISHI MOTORS 50th Anniversary
-               </div>
-            </div>
-         </div>
-         <div class="border-bottom"></div>
-         <div class="container">
-            <div class="row">
-               <div class="ev-sm-12 pd-t-20-sm pd-b-30-sm">
-                  <h2 class="title-primary_large mg-t-70-md">EVERY ADVENTURE IN LIFE IS WONDERFUL</h2>
-                  <p class="fs-24-md mg-b-0-md">#TemanSejalan</p>
-                  <a href="https://www.mitsubishi-motors.co.id/life-adventure" class="button button-outline-white mg-t-80-sm mg-t-50-md mg-b-100-md mg-b-0-sm">See Our Story</a>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="banner__background d-desktop lazy" data-bg="https://static.mitsubishi-motors.co.id/compress/assets/img/media-banner-desktop.webp" data-bg-hidpi="https://static.mitsubishi-motors.co.id/compress/assets/img/media-banner-desktop@2x.webp"></div>
-      <div class="banner__background d-mobile lazy" data-bg="https://static.mitsubishi-motors.co.id/compress/assets/img/media-banner.webp" data-bg-hidpi="https://static.mitsubishi-motors.co.id/compress/assets/img/media-banner@2x.webp"></div>
-   </div>
-</section>
+
 <section id="promos" class="tracked-section pd-t-35-sm pd-t-50-md pd-b-60-md pd-b-40-sm bg-grey overflow-hidden">
    <div class="container">
       <div class="row">

@@ -19,7 +19,12 @@ class TestDriveController extends Controller
     }
 
     public function add_action(Request $request){
-        TestDrive::insert($request->except(['_token','kota']));
+        TestDrive::insert($request->except(['_token']));
         return redirect()->back()->with('success','Terima kasih! kami akan segera menghubungi anda.');
+    }
+
+    public function delete($id){
+        TestDrive::destroy($id);
+        return redirect()->back()->with('success','Data berhasil dihapus');
     }
 }

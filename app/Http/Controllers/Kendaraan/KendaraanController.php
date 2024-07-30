@@ -42,6 +42,10 @@ class KendaraanController extends Controller
         $request->background->move(public_path('images/gambar_kendaraan/'), $background);
         $data['background'] = "images/gambar_kendaraan/" . $background;
 
+        $background2 = '2' . time() . $request->background2->getClientOriginalName();
+        $request->background2->move(public_path('images/gambar_kendaraan/'), $background2);
+        $data['background2'] = "images/gambar_kendaraan/" . $background2;
+
         $background_thumbnail = '5' . time() . $request->background_thumbnail->getClientOriginalName();
         $request->background_thumbnail->move(public_path('images/gambar_kendaraan/'), $background_thumbnail);
         $data['background_thumbnail'] = "images/gambar_kendaraan/" . $background_thumbnail;
@@ -79,6 +83,12 @@ class KendaraanController extends Controller
             $background = '2' . time() . $request->background->getClientOriginalName();
             $request->background->move(public_path('images/gambar_kendaraan/'), $background);
             $data['background'] = "images/gambar_kendaraan/" . $background;
+        }
+        if($request->background2){
+            File::delete(public_path($kendaraan->background2));
+            $background2 = '2' . time() . $request->background2->getClientOriginalName();
+            $request->background2->move(public_path('images/gambar_kendaraan/'), $background2);
+            $data['background2'] = "images/gambar_kendaraan/" . $background2;
         }
 
         if($request->background_thumbnail){

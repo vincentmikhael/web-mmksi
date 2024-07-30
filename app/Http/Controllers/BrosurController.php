@@ -69,7 +69,8 @@ class BrosurController extends Controller
    }
 
    public function show(){
-    $brosur = Brosur::all();
-    return view('main/brosur/index',compact('brosur'));
+    $brosur_1 = Brosur::where('kategori','KENDARAAN PENUMPANG')->get();
+    $brosur_2 = Brosur::where('kategori','KENDARAAN NIAGA RINGAN')->get();
+    return view('main/brosur/index',compact('brosur_1','brosur_2'));
    }
 }

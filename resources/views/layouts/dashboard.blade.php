@@ -42,6 +42,9 @@
     position: relative;
     z-index: 2;
   }
+  .cke_notification.cke_notification_warning{
+    display: none;
+  }
   </style>
 </head>
 

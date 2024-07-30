@@ -211,7 +211,7 @@ Route::get('/aftersales/maintenance',[MaintenanceController::class,'show']);
 Route::get('/test-drive',[TestDriveController::class,'show']);
 Route::post('/test-drive',[TestDriveController::class,'add_action']);
 Route::get('/list-testdrive',[TestDriveController::class,'index']);
-
+Route::get('/test-drive-delete/{id}',[TestDriveController::class,'delete']);
 
 
 Route::get('/kontak',[KontakController::class,'index']);

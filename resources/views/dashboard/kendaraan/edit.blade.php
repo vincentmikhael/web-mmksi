@@ -23,6 +23,8 @@
                     <input type="file" class="form-control" name="gambar">
                     <label for="">Gambar background</label>
                     <input type="file" class="form-control" name="background">
+                    <label for="">Gambar background 2</label>
+                    <input type="file" class="form-control" name="background2">
                     <label for="">Gambar background thumbnail</label>
                     <input type="file" class="form-control" name="background_thumbnail">
                     <label for="">Sub text 1</label>
@@ -35,6 +37,8 @@
                     <label for="">Foto 360 interior (foto panorama)</label>
                     <input type="file" class="form-control" name="foto_interior">
 
+                    <label for="">Opsi Text</label>
+                    <textarea name="opsi_text" class="form-control" style="height: 100px;">{{$kendaraan->opsi_text}}</textarea>
                     <button class="btn btn-primary mt-4">Submit</button>
                 </form>
             </div>

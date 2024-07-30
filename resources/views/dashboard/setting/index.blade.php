@@ -29,12 +29,28 @@
                         <input type="text" required value="{{$setting->meta_sitename}}" name="meta_sitename" class="form-control">
                     </div>
                     <div class="col-md-6">
-                        <label for="">Icon Website</label>
+                        <label for="">Icon Website untuk background hitam</label>
                         <input type="file" name="icon" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Icon Website untuk background putih</label>
+                        <input type="file" name="icon_white" class="form-control">
                     </div>
                     <div class="col-md-6">
                         <label for="">Favicon tab website</label>
                         <input type="file" name="favicon" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Icon Website 2 untuk background hitam</label>
+                        <input type="file" name="icon2" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Icon Website 2 untuk background putih</label>
+                        <input type="file" name="icon2_white" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="">Link icon 2</label>
+                        <input type="text" name="link2" value="{{$setting->link2}}" class="form-control">
                     </div>
                     <div class="col-md-6">
                         <label for="">Nomor whatsapp (untuk kontak hubungi kami)</label> <br>
@@ -59,7 +75,7 @@
                         <input type="text" required value="{{$setting->facebook}}" name="facebook" class="form-control">
                     </div>
                     <div class="col-md-6">
-                        <label for="">Link twitter</label>
+                        <label for="">Link Tiktok</label>
                         <input type="text" required value="{{$setting->twitter}}" name="twitter" class="form-control">
                     </div>
                     <div class="col-md-6"></div>

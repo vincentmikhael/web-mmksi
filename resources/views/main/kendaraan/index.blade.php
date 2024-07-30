@@ -77,26 +77,38 @@
 }
 </style>
 <div class="bootstrap-iso">
-<div class="container-fluid p-0 mb-5">
-    <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="w-100" src="{{asset($kendaraan->background)}}" alt="Image">
-                <div class="carousel-caption d-flex align-items-center">
-                    <div class="container">
-                        <div class="row align-items-center justify-content-center justify-content-lg-start">
-                            <div class="col-10 col-lg-7 text-center text-lg-start">
-                                <h1 class="text-white text-uppercase mb-3 animated slideInDown">{{$kendaraan->subtext1}}</h1>
-                                <h5 class="text-white col-lg-10 mb-4 pb-3 animated slideInDown">{{$kendaraan->subtext2}}</h5>
+    <div class="container-fluid p-0 mb-1">
+        <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="w-100" src="{{asset($kendaraan->background)}}" alt="Image">
+                </div>
+            </div>
+        </div>
+    </div>
+    @if ($kendaraan->background2)
+    <div class="container-fluid p-0 mb-5">
+        <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="w-100" src="{{asset($kendaraan->background2)}}" alt="Image">
+                    <div class="carousel-caption d-flex align-items-center">
+                        <div class="container">
+                            <div class="row align-items-center justify-content-center justify-content-lg-start">
+                                <div class="col-10 col-lg-7 text-center text-lg-start">
+                                    <h1 class="text-white text-uppercase mb-3 animated slideInDown">{{$kendaraan->subtext1}}</h1>
+                                    <h5 class="text-white col-lg-10 mb-4 pb-3 animated slideInDown">{{$kendaraan->subtext2}}</h5>
+                                </div>
+                          
                             </div>
-                      
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    @endif
+
 <div class="container">
     <div class="d-md-flex justify-content-around">
         <a href="#lineup" class="h5 text-muted">LINEUP</a>
@@ -113,7 +125,7 @@
           @foreach ($lineup as $idx_main => $item)
             <div id="mobil-main-{{$idx_main}}" class="col-md-3">
                 @foreach ($item->lineup_warna as $idx => $img)
-                    <img style="width: 100%; height: 150px;" id="mobil-{{$idx}}" class="mobil {{$idx != 0 ? 'd-none' : 'd-block'}}" src="{{asset($img->gambar)}}" alt="">
+                    <img style="width: 100%; height: 150px; object-fit: cover;" id="mobil-{{$idx}}" class="mobil {{$idx != 0 ? 'd-none' : 'd-block'}}" src="{{asset($img->gambar)}}" alt="">
                 @endforeach
                 <h5>{{$item->nama}}</h5>
                 <div class="d-flex align-items-center gap-1">
@@ -131,6 +143,14 @@
         </div>
 
 
+        <div class="mt-5">
+            <small>
+          {!!nl2br($kendaraan->opsi_text)!!}
+            </small>
+            
+        </div>
+
+
     <h1 class="mt-5">EKSTERIOR</h1>
         <div id="eksterior" class="owl-carousel carousel-a my-5 owl-theme">
             @foreach ($exterior as $item)
@@ -141,8 +161,8 @@
                     </div>
                     <div class="col-md-6">
                         <h3>{{$item->judul}}</h3>
-                        <p class="mt-4">{{$item->deskripsi}}</p>
-                        <button class="btn btn-dark">CARI DEALER</button>
+                        <p class="mt-4">{!!$item->deskripsi!!}</p>
+                        <a href="/dealer" class="btn btn-dark">CARI DEALER</a>
                     </div>
                 </div>
                 
@@ -160,8 +180,8 @@
                     </div>
                     <div class="col-md-6">
                         <h3>{{$item->judul}}</h3>
-                        <p class="mt-4">{{$item->deskripsi}}</p>
-                        <button class="btn btn-dark">CARI DEALER</button>
+                        <p class="mt-4">{!!$item->deskripsi!!}</p>
+                        <a href="/dealer" class="btn btn-dark">CARI DEALER</a>
                     </div>
                 </div>
                 
@@ -248,8 +268,8 @@
                     </div>
                     <div class="col-md-6">
                         <h3>{{$item->judul}}</h3>
-                        <p class="mt-4">{{$item->deskripsi}}</p>
-                        <button class="btn btn-dark">CARI DEALER</button>
+                        <p class="mt-4">{!!$item->deskripsi!!}</p>
+                        <a href="/dealer" class="btn btn-dark">CARI DEALER</a>
                     </div>
                 </div>
                 
@@ -267,8 +287,8 @@
                     </div>
                     <div class="col-md-6">
                         <h3>{{$item->judul}}</h3>
-                        <p class="mt-4">{{$item->deskripsi}}</p>
-                        <button class="btn btn-dark">CARI DEALER</button>
+                        <p class="mt-4">{!!$item->deskripsi!!}</p>
+                        <a href="/dealer" class="btn btn-dark">CARI DEALER</a>
                     </div>
                 </div>
                 

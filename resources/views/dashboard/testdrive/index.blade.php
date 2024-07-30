@@ -9,9 +9,9 @@
                 <h6>Permintaan test drive</h6>
               </div>
               <div class="card-body px-4 pt-0 pb-2">
-                <div class="d-flex justify-content-end">
+                {{-- <div class="d-flex justify-content-end">
                     <a href="/brosur/add" class="btn btn-primary">Tambah data</a>
-                </div>
+                </div> --}}
                 
                 <div class="table-responsive p-0">
                     <table class="table align-items-center mb-0">
@@ -20,7 +20,7 @@
                           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
                           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal</th>
                           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jam</th>
-                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Cabang</th>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kota</th>
                           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kendaraan</th>
                           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No Telepon</th>
                           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
@@ -40,12 +40,14 @@
                           </td>
                           <td><h6>{{$item->tanggal}}</h6></td>
                           <td><h6>{{$item->jam}}</h6></td>
-                          <td><h6>{{$item->cabang_id}}</h6></td>
+                          <td><h6>{{$item->kota}}</h6></td>
                           <td><h6>{{$item->kendaraan_id}}</h6></td>
                           <td><h6>{{$item->no_telp}}</h6></td>
                           <td><h6>{{$item->email}}</h6></td>
                           <td><h6>{{$item->jenis_kelamin}}</h6></td>
-    
+                          <td>
+                            <a href="/test-drive-delete/{{$item->id}}" class="btn btn-danger">Hapus</a>
+                          </td>
                         </tr>
                         @endforeach
                         

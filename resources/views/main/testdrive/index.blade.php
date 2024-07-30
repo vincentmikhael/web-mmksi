@@ -102,12 +102,13 @@
                     @endforeach
                 </select>
             </div>
-            <div class="col-md-6">
+            <input type="hidden" name="cabang_id" value="0">
+            {{-- <div class="col-md-6">
                 <label for="">Pilih Dealer</label>
                 <select name="cabang_id" class="form-select" id="dealer">
                     <option selected disabled>--Pilih kota</option>
                 </select>
-            </div>
+            </div> --}}
           </div>
           <button type="submit" class="btn btn-dark mt-4">KIRIM PERMINTAAN TEST DRIVE</button>
 

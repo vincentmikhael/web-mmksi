@@ -18,6 +18,7 @@
                       <thead>
                         <tr>
                           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Judul</th>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kategori</th>
                           <th class="text-secondary opacity-7"></th>
                           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created by</th>
                           <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Updated by</th>
@@ -36,6 +37,7 @@
                               </div>
                             </div>
                           </td>
+                          <td>{{$item->kategori}}</td>
          
                           <td class="align-middle">
                             <a href="/brosur/edit/{{$item->id}}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit brosur"> Edit </a>
